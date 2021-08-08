@@ -1,0 +1,25 @@
+<nav>
+  <div class="logo">
+    <img class="icon logo-icon" src="assets/images/logo.svg" alt="logo" />
+    <img
+      class="icon logo-icon-light"
+      src="assets/images/logo-white.svg"
+      alt="logo"
+    />
+  </div>
+
+  <img
+    (click)="toogleNav()"
+    src="assets/images/menu-bars.svg"
+    class="menu-icon"
+    alt="menu-icon"
+  />
+
+  <ul [ngClass]="{ 'show-nav': showNav }">
+    <li><a href="/stock">Live</a></li>
+    <li><a href="/stock" class="active">Market</a></li>
+    <li><a href="#">portfolio</a></li>
+    <li><a href="#">login</a></li>
+    <li><a href="#">signup</a></li>
+  </ul>
+</nav>
