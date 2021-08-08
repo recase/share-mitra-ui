@@ -1,0 +1,17 @@
+.stock-container {
+  margin-top: 16px;
+  width: 80vw;
+  margin: auto;
+}
+
+@media screen and (max-width: 1200px) {
+  .stock-container {
+    width: 90vw;
+    margin: auto;
+  }
+}
+@media screen and (max-width: 858px) {
+  .stock-container {
+    width: 100vw;
+  }
+}
