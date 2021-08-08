@@ -1,8 +1,10 @@
+@import "../../../../styles.scss";
+
 .price-container {
   height: calc(100vh - 126px);
   .last-update-date-label {
     margin-top: 16px;
-    font-size: 18px;
+    font-size: $font-size-m;
     font-style: italic;
   }
 
@@ -15,10 +17,9 @@
 
     .mat-column-symbol {
       width: 50px;
-      //   border-right: 1px solid currentColor;
       min-width: 150px;
       padding-right: 8px;
-      font-size: 20px;
+      font-size: $font-size-l;
       text-align: left;
     }
 
@@ -49,24 +50,24 @@
 
     .high {
       .mat-column-change {
-        color: green;
+        color: $green;
       }
       .mat-column-change::before {
         content: "+";
-        font-size: 16px;
+        font-size: $font-size-b;
         margin-right: 8px;
-        color: green;
+        color: $green;
       }
     }
     .low {
       .mat-column-change {
-        color: red;
+        color: $red;
       }
       .mat-column-change::before {
         content: "-";
-        font-size: 20px;
+        font-size: $font-size-l;
         margin-right: 8px;
-        color: red;
+        color: $red;
       }
     }
   }

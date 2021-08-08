@@ -1,0 +1,45 @@
+@mixin align($vertical: true, $horizontal: true, $position: relative) {
+  @if $position {
+    position: $position;
+  }
+  @if $vertical {
+    top: 50%;
+  }
+  @if $horizontal {
+    left: 50%;
+  }
+
+  @if $vertical and $horizontal {
+    transform: translate(-50%, -50%);
+  } @else if $vertical {
+    transform: translatey(-50%);
+  } @else if $horizontal {
+    transform: translateX(-50%);
+  }
+}
+
+@mixin line-clamp($num-line: 1, $line-height: 16) {
+  overflow: hidden;
+  text-overflow: -o-ellipsis-lastline;
+  text-overflow: ellipsis;
+  display: block;
+  /* autoprefixer: off */
+  display: -webkit-box;
+  -webkit-line-clamp: $numLines;
+  -webkit-box-orient: vertical;
+  max-height: $numLines * $lineHeight + unquote("px");
+}
+
+@mixin generic-paragraph(
+  $color: "black",
+  $size: 16px,
+  $line-ht: 22px,
+  $weight: 400,
+  $font-family: "Source Sans Pro"
+) {
+  font-size: $size;
+  font-weight: $weight;
+  color: $color;
+  line-height: $line-ht;
+  font-family: $font-family;
+}
