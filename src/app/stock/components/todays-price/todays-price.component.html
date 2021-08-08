@@ -1,0 +1,49 @@
+<div class="price-container">
+  <div class="last-update-date-label">
+    As of: {{ today | date: "yyyy-MM-dd" }}
+  </div>
+  <div class="price-table-container">
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      class="mat-elevation-z8 demo-table"
+    >
+      <!-- symbol Column -->
+      <ng-container matColumnDef="symbol" sticky="true">
+        <th mat-header-cell *matHeaderCellDef>Symbol</th>
+        <td mat-cell *matCellDef="let element">{{ element.symbol }}</td>
+      </ng-container>
+
+      <!-- ltp Column -->
+      <ng-container matColumnDef="ltp">
+        <th mat-header-cell *matHeaderCellDef>LTP</th>
+        <td mat-cell *matCellDef="let element">{{ element.LTP }}</td>
+      </ng-container>
+
+      <!-- p close Column -->
+      <ng-container matColumnDef="pclose">
+        <th mat-header-cell *matHeaderCellDef>P Close</th>
+        <td mat-cell *matCellDef="let element">{{ element.pClose }}</td>
+      </ng-container>
+
+      <!-- chnage Column -->
+      <ng-container matColumnDef="change">
+        <th mat-header-cell *matHeaderCellDef>Change%</th>
+        <td mat-cell *matCellDef="let element">{{ element.change }}</td>
+      </ng-container>
+
+      <!-- open Column -->
+      <ng-container matColumnDef="open">
+        <th mat-header-cell *matHeaderCellDef>Open</th>
+        <td mat-cell *matCellDef="let element">{{ element.open }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        [ngClass]="{ high: row.change > 10, low: row.change < 10 }"
+      ></tr>
+    </table>
+  </div>
+</div>
