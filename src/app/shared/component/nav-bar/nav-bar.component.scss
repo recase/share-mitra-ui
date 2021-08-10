@@ -1,5 +1,14 @@
 @import "../../../../styles.scss";
 
+@keyframes blink {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 nav {
   height: 60px;
   width: 70%;
@@ -40,6 +49,7 @@ nav {
         padding: 4px;
         border-radius: 4px;
         color: $black;
+        position: relative;
       }
       a:hover {
         text-decoration: underline;
@@ -50,6 +60,19 @@ nav {
         // border: 1px solid #1b9bff;
         transform: scale(1.05);
         font-weight: $semi-blod;
+      }
+
+      .live::before {
+        content: "";
+        height: 6px;
+        width: 6px;
+        border-radius: 50%;
+        background: $red;
+        position: absolute;
+        top: 0;
+        right: -4px;
+        animation: blink 1s ease-in-out;
+        animation-iteration-count: infinite;
       }
     }
   }
