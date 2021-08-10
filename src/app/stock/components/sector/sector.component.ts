@@ -1,15 +1,22 @@
 import { Component, OnInit } from '@angular/core';
+import { Sector } from 'src/app/interface';
 
 @Component({
   selector: 'app-sector',
   templateUrl: './sector.component.html',
-  styleUrls: ['./sector.component.scss']
+  styleUrls: ['./sector.component.scss'],
 })
 export class SectorComponent implements OnInit {
+  public sectors: Sector[] = [
+    {
+      name: 'Banking',
+      regulatoryBody: 'Nepal Rastrya Bank',
+    },
+  ];
 
-  constructor() { }
+  public displayedColumns = ['name', 'regulatorybody'];
 
-  ngOnInit(): void {
-  }
+  constructor() {}
 
+  ngOnInit(): void {}
 }

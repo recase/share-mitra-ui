@@ -3,16 +3,46 @@
 .price-container {
   height: calc(100vh - 126px);
   .last-update-date-label {
-    margin-top: 16px;
+    margin: 16px 0 8px;
     font-size: $font-size-m;
     font-style: italic;
   }
 
   .price-table-container {
-    height: calc(100vh - 146px);
+    max-height: calc(100vh - 156px);
+    width: 98%;
+    margin: auto;
     overflow: auto;
-    .demo-table {
+    box-shadow: -1px 3px 9px 0px rgb(0 0 0 / 50%);
+
+    .price-table {
       width: 100%;
+
+      .header-row {
+        background: $background-color;
+        .header-label {
+          padding: 8px;
+          border-right: 1px solid $table-border;
+        }
+        .header-label:last-child {
+          border-right: none;
+        }
+      }
+
+      .row-data {
+        background: $background-color;
+
+        .value {
+          padding: 4px 6px;
+          border-right: 1px solid $table-border;
+        }
+        .value:last-child {
+          border-right: none;
+        }
+      }
+      .row-data:nth-child(2n + 1) {
+        background: $catskill-white;
+      }
     }
 
     .mat-column-symbol {
@@ -21,6 +51,10 @@
       padding-right: 8px;
       font-size: $font-size-l;
       text-align: left;
+      cursor: pointer;
+    }
+    .mat-column-symbol:hover {
+      text-decoration: underline;
     }
 
     .mat-column-ltp {
@@ -47,6 +81,21 @@
       width: 80px;
       text-align: right;
     }
+    .mat-column-high {
+      min-width: 64px;
+      width: 80px;
+      text-align: right;
+    }
+    .mat-column-low {
+      min-width: 64px;
+      width: 80px;
+      text-align: right;
+    }
+    .mat-column-volume {
+      min-width: 90px;
+      width: 120px;
+      text-align: right;
+    }
 
     .high {
       .mat-column-change {
@@ -70,5 +119,17 @@
         color: $red;
       }
     }
+  }
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+    overflow-y: scroll;
+    background: $scroll-bar-background;
+    box-shadow: inset 0 0 4px $scroll-bar-shadow;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: $scroll-bar-fill;
+    border-radius: 2px;
   }
 }
