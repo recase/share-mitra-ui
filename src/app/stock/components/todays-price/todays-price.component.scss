@@ -40,21 +40,23 @@
           border-right: none;
         }
       }
-      .row-data:nth-child(2n + 1) {
-        background: $catskill-white;
-      }
     }
 
     .mat-column-symbol {
       width: 50px;
       min-width: 150px;
-      padding-right: 8px;
       font-size: $font-size-l;
       text-align: left;
       cursor: pointer;
     }
-    .mat-column-symbol:hover {
-      text-decoration: underline;
+
+    .row-data {
+      .mat-column-symbol {
+        padding-left: 24px !important;
+      }
+      .mat-column-symbol:hover {
+        text-decoration: underline;
+      }
     }
 
     .mat-column-ltp {
@@ -98,25 +100,70 @@
     }
 
     .high {
-      .mat-column-change {
-        color: $green;
+      background: #089308 !important;
+      .value {
+        color: #dfdfdf;
       }
-      .mat-column-change::before {
-        content: "+";
-        font-size: $font-size-b;
-        margin-right: 8px;
-        color: $green;
+      .mat-column-symbol::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border: 2px solid white;
+        position: absolute;
+        left: 8px;
+        box-sizing: border-box;
+        border-bottom: none;
+        border-right: none;
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
       }
     }
     .low {
-      .mat-column-change {
-        color: $red;
+      background: #ff4343 !important;
+
+      .value {
+        color: #dfdfdf;
       }
-      .mat-column-change::before {
-        content: "-";
-        font-size: $font-size-l;
-        margin-right: 8px;
-        color: $red;
+      .mat-column-symbol::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border: 2px solid white;
+        position: absolute;
+        left: 8px;
+        box-sizing: border-box;
+        border-top: none;
+        border-left: none;
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+      }
+    }
+    .unchange {
+      .mat-column-symbol::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border: 2px solid #837878;
+        position: absolute;
+        left: 6px;
+        box-sizing: border-box;
+        border-top: none;
+        border-right: none;
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+      }
+      .mat-column-symbol::after {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border: 2px solid #837878;
+        position: absolute;
+        left: 10px;
+        box-sizing: border-box;
+        border-bottom: none;
+        border-left: none;
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
       }
     }
   }

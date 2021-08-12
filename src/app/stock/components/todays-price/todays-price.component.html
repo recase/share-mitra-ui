@@ -5,7 +5,7 @@
   <div class="price-table-container">
     <table
       mat-table
-      [dataSource]="dataSource"
+      [dataSource]="priceList"
       class="mat-elevation-z8 price-table"
     >
       <!-- symbol Column -->
@@ -85,7 +85,11 @@
       <tr
         mat-row
         *matRowDef="let row; columns: displayedColumns"
-        [ngClass]="{ high: row.change > 0, low: row.change < 0 }"
+        [ngClass]="{
+          high: row.change > 0,
+          low: row.change < 0,
+          unchange: row.change == 0
+        }"
         class="row-data"
       ></tr>
     </table>
