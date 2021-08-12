@@ -1,1 +1,93 @@
-<p>live works!</p>
+<div class="live-container">
+  <div class="date-container">As of: 2021/0.2/11 02:47:21</div>
+  <div class="table-container">
+    <table mat-table [dataSource]="liveData" class="live-table">
+      <!-- symbol colum -->
+      <ng-container matColumnDef="symbol" sticky="true">
+        <th mat-header-cell *matHeaderCellDef class="header-label">Symbol</th>
+        <td mat-cell *matCellDef="let element" class="value">
+          {{ element.symbol }}
+        </td>
+      </ng-container>
+      <!-- ltp colum -->
+      <ng-container matColumnDef="ltp">
+        <th mat-header-cell *matHeaderCellDef class="header-label">LTP</th>
+        <td mat-cell *matCellDef="let element" class="value">
+          {{ element.lastTradedPrice }}
+        </td>
+      </ng-container>
+      <!-- change colum -->
+      <ng-container matColumnDef="change">
+        <th mat-header-cell *matHeaderCellDef class="header-label">% change</th>
+        <td mat-cell *matCellDef="let element" class="value">
+          {{ element.change }}
+        </td>
+      </ng-container>
+      <!-- p close colum -->
+      <ng-container matColumnDef="pclose">
+        <th mat-header-cell *matHeaderCellDef class="header-label">p close</th>
+        <td mat-cell *matCellDef="let element" class="value">
+          {{ element.previousClose }}
+        </td>
+      </ng-container>
+      <!-- open colum -->
+      <ng-container matColumnDef="open">
+        <th mat-header-cell *matHeaderCellDef class="header-label">open</th>
+        <td mat-cell *matCellDef="let element" class="value">
+          {{ element.openPrice }}
+        </td>
+      </ng-container>
+      <!-- high colum -->
+      <ng-container matColumnDef="high">
+        <th mat-header-cell *matHeaderCellDef class="header-label">high</th>
+        <td mat-cell *matCellDef="let element" class="value">
+          {{ element.highPrice }}
+        </td>
+      </ng-container>
+      <!-- low colum -->
+      <ng-container matColumnDef="low">
+        <th mat-header-cell *matHeaderCellDef class="header-label">low</th>
+        <td mat-cell *matCellDef="let element" class="value">
+          {{ element.lowPrice }}
+        </td>
+      </ng-container>
+      <!-- ltv colum -->
+      <ng-container matColumnDef="ltv">
+        <th mat-header-cell *matHeaderCellDef class="header-label">LTV</th>
+        <td mat-cell *matCellDef="let element" class="value">
+          {{ element.lastTradedVolume }}
+        </td>
+      </ng-container>
+      <!-- ltt colum -->
+      <ng-container matColumnDef="ltt">
+        <th mat-header-cell *matHeaderCellDef class="header-label">LTT</th>
+        <td mat-cell *matCellDef="let element" class="value">
+          {{ element.lastTradedTime }}
+        </td>
+      </ng-container>
+      <!-- tv colum -->
+      <ng-container matColumnDef="tv">
+        <th mat-header-cell *matHeaderCellDef class="header-label">TV</th>
+        <td mat-cell *matCellDef="let element" class="value">
+          {{ element.totalVolume }}
+        </td>
+      </ng-container>
+
+      <tr
+        mat-header-row
+        *matHeaderRowDef="displayedColumns; sticky: true"
+        class="header-row"
+      ></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        class="row-data"
+        [ngClass]="{
+          high: row.change > 0,
+          low: row.change < 0,
+          unchange: row.change == 0
+        }"
+      ></tr>
+    </table>
+  </div>
+</div>
