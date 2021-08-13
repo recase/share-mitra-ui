@@ -10,6 +10,7 @@ export interface StockPrice {
 }
 
 export interface CompanyData {
+  id: number;
   name: string;
   symbol: string;
   instrumentType: string;
@@ -17,6 +18,21 @@ export interface CompanyData {
 }
 
 export interface Sector {
+  id: number;
   name: string;
   regulatoryBody: string;
+}
+
+export interface StockList {
+  date: Date;
+  stocks: StockPrice[];
+}
+
+export interface StockState {
+  companies: CompanyData[];
+  sectors: Sector[];
+  stockPriceList: StockList | undefined;
+  compantDataLoading: boolean;
+  sectorDataLoading: boolean;
+  StockPriceDateLoading: boolean;
 }
