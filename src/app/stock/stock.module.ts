@@ -10,6 +10,8 @@ import { TodaysPriceComponent } from './components/todays-price/todays-price.com
 import { SectorComponent } from './components/sector/sector.component';
 import { CompanyComponent } from './components/company/company.component';
 import { MatSortModule } from '@angular/material/sort';
+import { EffectsModule } from '@ngrx/effects';
+import { StockEffects } from './store/stock.effects';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatTabsModule,
     MatTableModule,
     MatSortModule,
+    EffectsModule.forFeature([StockEffects]),
   ],
 })
 export class StockModule {}
