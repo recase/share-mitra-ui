@@ -1,7 +1,7 @@
 <div class="live-container">
-  <div class="date-container">As of: 2021/0.2/11 02:47:21</div>
+  <div class="date-container">As of: {{ liveData.date }}</div>
   <div class="table-container">
-    <table mat-table [dataSource]="liveData" class="live-table">
+    <table mat-table [dataSource]="liveData.stocks" class="live-table">
       <!-- symbol colum -->
       <ng-container matColumnDef="symbol" sticky="true">
         <th mat-header-cell *matHeaderCellDef class="header-label">Symbol</th>
@@ -20,14 +20,14 @@
       <ng-container matColumnDef="change">
         <th mat-header-cell *matHeaderCellDef class="header-label">% change</th>
         <td mat-cell *matCellDef="let element" class="value">
-          {{ element.change }}
+          {{ element.change + "%" }}
         </td>
       </ng-container>
       <!-- p close colum -->
       <ng-container matColumnDef="pclose">
         <th mat-header-cell *matHeaderCellDef class="header-label">p close</th>
         <td mat-cell *matCellDef="let element" class="value">
-          {{ element.previousClose }}
+          {{ element.previousClosePrice }}
         </td>
       </ng-container>
       <!-- open colum -->

@@ -1,49 +1,55 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+import { LiveState, LiveStockList } from 'src/app/interface';
+import { retrieveLivePrice } from '../../state/live.actions';
+import { retrieveLivePriceState } from '../../state/live.selectors';
 
 @Component({
   selector: 'app-live',
   templateUrl: './live.component.html',
   styleUrls: ['./live.component.scss'],
 })
-export class LiveComponent implements OnInit {
-  public liveData = [
-    {
-      symbol: 'nambi',
-      lastTradedPrice: 23,
-      change: 0.3,
-      previousClose: 23,
-      openPrice: 23,
-      highPrice: 32,
-      lowPrice: 21,
-      lastTradedVolume: 32,
-      lastTradedTime: new Date().toLocaleString(),
-      totalVolume: 300,
-    },
-    {
-      symbol: 'nambi',
-      lastTradedPrice: 23,
-      change: -0.3,
-      previousClose: 23,
-      openPrice: 23,
-      highPrice: 32,
-      lowPrice: 21,
-      lastTradedVolume: 32,
-      lastTradedTime: new Date().toLocaleString(),
-      totalVolume: 300,
-    },
-    {
-      symbol: 'nambi',
-      lastTradedPrice: 23,
-      change: 0.0,
-      previousClose: 23,
-      openPrice: 23,
-      highPrice: 32,
-      lowPrice: 21,
-      lastTradedVolume: 32,
-      lastTradedTime: new Date().toLocaleString(),
-      totalVolume: 300,
-    },
-  ];
+export class LiveComponent implements OnInit, OnDestroy {
+  public liveData!: LiveStockList;
+  // [
+  //   {
+  //     symbol: 'nambi',
+  //     lastTradedPrice: 23,
+  //     change: 0.3,
+  //     previousClose: 23,
+  //     openPrice: 23,
+  //     highPrice: 32,
+  //     lowPrice: 21,
+  //     lastTradedVolume: 32,
+  //     lastTradedTime: new Date().toLocaleString(),
+  //     totalVolume: 300,
+  //   },
+  //   {
+  //     symbol: 'nambi',
+  //     lastTradedPrice: 23,
+  //     change: -0.3,
+  //     previousClose: 23,
+  //     openPrice: 23,
+  //     highPrice: 32,
+  //     lowPrice: 21,
+  //     lastTradedVolume: 32,
+  //     lastTradedTime: new Date().toLocaleString(),
+  //     totalVolume: 300,
+  //   },
+  //   {
+  //     symbol: 'nambi',
+  //     lastTradedPrice: 23,
+  //     change: 0.0,
+  //     previousClose: 23,
+  //     openPrice: 23,
+  //     highPrice: 32,
+  //     lowPrice: 21,
+  //     lastTradedVolume: 32,
+  //     lastTradedTime: new Date().toLocaleString(),
+  //     totalVolume: 300,
+  //   },
+  // ];
   public displayedColumns = [
     'symbol',
     'ltp',
@@ -56,7 +62,21 @@ export class LiveComponent implements OnInit {
     'ltt',
     'tv',
   ];
-  constructor() {}
+  private liveDataSubscription!: Subscription;
+  constructor(private store: Store<LiveState>) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.store.dispatch(retrieveLivePrice());
+    this.liveDataSubscription = this.store
+      .select(retrieveLivePriceState)
+      .subscribe((data: LiveStockList) => {
+        this.liveData = data;
+      });
+  }
+
+  ngOnDestroy(): void {
+    if (this.liveDataSubscription) {
+      this.liveDataSubscription.unsubscribe();
+    }
+  }
 }
