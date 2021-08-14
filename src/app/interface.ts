@@ -1,12 +1,28 @@
-export interface StockPrice {
+export interface LiveStockPrice {
+  id: number;
   symbol: string;
+  lastTradedPrice: number;
   openPrice: number;
   previousClosePrice: number;
   highPrice: number;
   lowPrice: number;
-  lastTradedPrice: number;
+  lastTradedTime: string;
   change: number;
+  lastTradedVolume: number;
   totalVolume: number;
+}
+
+export interface StockPrice {
+  id: number;
+  symbol: string;
+  openPrice: number;
+  highPrice: number;
+  lowPrice: number;
+  previousClosePrice: number;
+  closePrice: number;
+  percentageChange: number;
+  totalvolume: number;
+  date: string;
 }
 
 export interface CompanyData {
@@ -23,16 +39,26 @@ export interface Sector {
   regulatoryBody: string;
 }
 
-export interface StockList {
-  date: Date;
-  stocks: StockPrice[];
+export interface LiveStockList {
+  date: string;
+  stocks: LiveStockPrice[];
+}
+
+export interface StockPriceList {
+  date: string;
+  stocksPrice: StockPrice[];
 }
 
 export interface StockState {
   companies: CompanyData[];
   sectors: Sector[];
-  stockPriceList: StockList | undefined;
+  stockPriceList: StockPriceList;
   compantDataLoading: boolean;
   sectorDataLoading: boolean;
-  StockPriceDateLoading: boolean;
+  StockPriceLoading: boolean;
+}
+
+export interface LiveState {
+  liveStockPriceList: LiveStockList;
+  // liveStockLoading: boolean;
 }
