@@ -6,7 +6,9 @@ import {
   updateSectorList,
   updateSectorLoading,
   updateStockPriceList,
+  // updateLiveStockPriceList,
   updateStockPriceLoading,
+  // updateLiveStockLoading,
 } from './stock.actions';
 import { stockState } from './stock.state';
 
@@ -24,6 +26,12 @@ const _stockReducer = createReducer(
       sectors: action.sectors,
     };
   }),
+  // on(updateLiveStockPriceList, (state, action) => {
+  //   return {
+  //     ...state,
+  //     liveStockPriceList: action.liveStockList,
+  //   };
+  // }),
   on(updateStockPriceList, (state, action) => {
     return {
       ...state,
@@ -45,9 +53,15 @@ const _stockReducer = createReducer(
   on(updateStockPriceLoading, (state, action) => {
     return {
       ...state,
-      StockPriceDateLoading: action.stockPriveLoading,
+      StockPriceLoading: action.stockPriceLoading,
     };
   })
+  // on(updateLiveStockLoading, (state, action) => {
+  //   return {
+  //     ...state,
+  //     liveStockLoading: action.liveStockLoading,
+  //   };
+  // })
 );
 
 export function stockReducer(state: StockState | undefined, action: Action) {

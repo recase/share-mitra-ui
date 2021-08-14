@@ -15,6 +15,12 @@ export const sectorSelector = createSelector(getStockSelector, (state) => {
 export const stockPriceSelector = createSelector(getStockSelector, (state) => {
   return state.stockPriceList;
 });
+// export const liveStockPriceSelector = createSelector(
+//   getStockSelector,
+//   (state) => {
+//     return state.liveStockPriceList;
+//   }
+// );
 
 export const companyLoading = createSelector(getStockSelector, (state) => {
   return state.compantDataLoading;
@@ -23,5 +29,5 @@ export const sectorLoading = createSelector(getStockSelector, (state) => {
   return state.sectorDataLoading;
 });
 export const stockPriceLoading = createSelector(getStockSelector, (state) => {
-  return state.StockPriceDateLoading;
+  return state.StockPriceLoading;
 });
