@@ -10,10 +10,18 @@
 }
 
 nav {
+  box-sizing: border-box;
   height: 60px;
   width: 70%;
-  position: relative;
   margin: 0 auto;
+  top: 0;
+  position: fixed;
+  left: 50%;
+  transform: translatex(-50%);
+  top: 0;
+  z-index: 100;
+  background: #f6fcffd1;
+  border-bottom: 1px solid gray;
 
   .logo {
     margin-left: 60px;
@@ -122,6 +130,7 @@ nav {
       text-align: center;
       transition: all 0.5s;
       margin: 0;
+      z-index: 1000;
       li {
         display: block;
         a {
