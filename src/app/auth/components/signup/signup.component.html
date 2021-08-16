@@ -1,0 +1,114 @@
+<div class="main-container">
+  <div class="signup-container">
+    <div class="form-section signup-section">
+      <div class="header">Signup</div>
+      <div class="response-error">Email address already exist!</div>
+      <form [formGroup]="signupFormGroup">
+        <div class="field-section">
+          <div class="label">Email:</div>
+          <input
+            type="email"
+            formControlName="email"
+            class="value"
+            (keydown)="resetError()"
+          />
+          <div
+            class="error-container"
+            *ngIf="hasFormError && signupFrom.email.errors"
+          >
+            <div class="error" *ngIf="signupFrom.email.errors.required">
+              Required
+            </div>
+            <div class="error" *ngIf="signupFrom.email.errors.email">
+              Invalid email
+            </div>
+          </div>
+        </div>
+        <div class="field-section">
+          <div class="label">First Name:</div>
+          <input
+            type="text"
+            formControlName="firstName"
+            class="value"
+            (keydown)="resetError()"
+          />
+          <div
+            class="error-container"
+            *ngIf="hasFormError && signupFrom.firstName.errors"
+          >
+            <div class="error" *ngIf="signupFrom.firstName.errors.required">
+              Required
+            </div>
+          </div>
+        </div>
+        <div class="field-section">
+          <div class="label">Last Name:</div>
+          <input
+            type="test"
+            formControlName="lastName"
+            class="value"
+            (keydown)="resetError()"
+          />
+          <div
+            class="error-container"
+            *ngIf="hasFormError && signupFrom.lastName.errors"
+          >
+            <div class="error" *ngIf="signupFrom.lastName.errors.required">
+              Required
+            </div>
+          </div>
+        </div>
+        <div class="field-section">
+          <div class="label">Password:</div>
+          <input
+            type="password"
+            formControlName="password"
+            class="value"
+            (keydown)="resetError()"
+          />
+          <div
+            class="error-container"
+            *ngIf="hasFormError && signupFrom.password.errors"
+          >
+            <div class="error" *ngIf="signupFrom.password.errors.required">
+              Required
+            </div>
+            <div class="error" *ngIf="signupFrom.password.errors.minlength">
+              Atleast 6 characters
+            </div>
+          </div>
+        </div>
+        <div class="field-section">
+          <div class="label">Confirm password:</div>
+          <input
+            type="password"
+            formControlName="confirmPassword"
+            class="value"
+            (keydown)="resetError()"
+          />
+          <div
+            class="error-container"
+            *ngIf="hasFormError && signupFrom.confirmPassword.errors"
+          >
+            <div
+              class="error"
+              *ngIf="signupFrom.confirmPassword.errors.required"
+            >
+              Required
+            </div>
+          </div>
+        </div>
+        <div class="error-container" *ngIf="passwordMatchError">
+          Password doesnot match
+        </div>
+        <div class="action-container">
+          <button class="btn action-btn" (click)="signup()">Signup</button>
+        </div>
+      </form>
+      <div class="link-container">
+        Already has account? <a href="/auth/login" class="link-label">Login</a>.
+      </div>
+    </div>
+    <div class="side-background-section"></div>
+  </div>
+</div>
