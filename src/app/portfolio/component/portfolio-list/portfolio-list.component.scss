@@ -1,0 +1,37 @@
+@import "../../../../styles.scss";
+.portfolio-list-container {
+  padding: 12px;
+  // .summary-container{}
+
+  .list-container {
+    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .portfolio-detail {
+      margin-top: 12px;
+      width: 48%;
+    }
+  }
+
+  .add-action {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+
+    .add-stock {
+      background-color: red;
+      color: white;
+    }
+  }
+}
+@media screen and (max-width: 858px) {
+  .portfolio-list-container {
+    .list-container {
+      .portfolio-detail {
+        width: 100%;
+      }
+    }
+  }
+}

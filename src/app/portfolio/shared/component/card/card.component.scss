@@ -1,0 +1,63 @@
+@import "../../../../../styles.scss";
+
+.card-container {
+  padding: 18px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  box-shadow: 2px 4px 7px 4px rgb(0 0 0 / 50%);
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid gray;
+    align-items: center;
+
+    .symbol {
+      font-size: $font-size-l;
+      font-weight: $bold;
+    }
+
+    .ltp {
+      .label,
+      .value {
+        align-items: center;
+      }
+    }
+  }
+
+  .sub-header {
+    .name {
+      font-style: italic;
+    }
+  }
+
+  .detail-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+
+    .fields {
+      width: 33%;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+  }
+}
+.profit-container {
+  background-color: #33e6002b;
+}
+.loss-container {
+  background-color: #f723232b;
+}
+
+.value {
+  font-weight: $bold;
+}
+
+.profit-value {
+  color: $dark-green;
+}
+
+.loss-value {
+  color: $red;
+}

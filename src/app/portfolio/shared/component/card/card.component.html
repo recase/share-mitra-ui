@@ -1,0 +1,74 @@
+<div class="card-container" [ngClass]="{ 'loss-container': true }">
+  <div class="header">
+    <div class="symbol">{{ portfolio.symbol }}</div>
+    <div class="ltp">
+      <div class="label">LTP</div>
+      <div
+        class="value"
+        [ngClass]="{
+          'profit-value': portfolio.change > 0,
+          'loss-value': portfolio.change < 0
+        }"
+      >
+        {{ portfolio.lastTradedPrice }} ({{ portfolio.change }}%)
+      </div>
+    </div>
+  </div>
+  <div class="sub-header">
+    <div class="name">{{ portfolio.name }}</div>
+  </div>
+  <div class="detail-container">
+    <div class="fields">
+      <div class="label">Units</div>
+      <div class="value">{{ portfolio.totalStock }}</div>
+    </div>
+    <div class="fields">
+      <div class="label">Total investment</div>
+      <div class="value">{{ portfolio.totalInvestment }}</div>
+    </div>
+    <div class="fields">
+      <div class="label">Total cost</div>
+      <div class="value">{{ portfolio.totalStockInvestment }}</div>
+    </div>
+    <!-- <div class="fields">
+      <div class="label">Type</div>
+      <div class="value">{{ portfolio.stockType }}</div>
+    </div> -->
+    <div class="fields">
+      <div class="label">Overall profit</div>
+      <div
+        class="value"
+        [ngClass]="{
+          'profit-value': portfolio.overallProfit > 0,
+          'loss-value': portfolio.overallProfit < 0
+        }"
+      >
+        {{ portfolio.overallProfit }}
+      </div>
+    </div>
+    <div class="fields">
+      <div class="label">Profit percentage</div>
+      <div
+        class="value"
+        [ngClass]="{
+          'profit-value': portfolio.profitPercentage > 0,
+          'loss-value': portfolio.profitPercentage < 0
+        }"
+      >
+        {{ portfolio.profitPercentage }}%
+      </div>
+    </div>
+    <div class="fields">
+      <div class="label">Today's profit</div>
+      <div
+        class="value"
+        [ngClass]="{
+          'profit-value': portfolio.todaysProfit > 0,
+          'loss-value': portfolio.todaysProfit < 0
+        }"
+      >
+        {{ portfolio.todaysProfit }}
+      </div>
+    </div>
+  </div>
+</div>
