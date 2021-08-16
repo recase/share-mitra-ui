@@ -6,7 +6,6 @@ import { liveState } from './live.state';
 const _liveReducer = createReducer(
   liveState,
   on(updateLivePrice, (state, action) => {
-    debugger;
     return {
       ...state,
       liveStockPriceList: action.livePrice,
