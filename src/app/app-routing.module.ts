@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'stock',
+    path: '',
     loadChildren: () =>
       import('./stock/stock.module').then((m) => m.StockModule),
   },
@@ -11,6 +11,15 @@ const routes: Routes = [
     path: 'live',
     loadChildren: () =>
       import('./live-stock/live-stock.module').then((m) => m.LiveStockModule),
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+  },
+  {
+    path: 'portfolio',
+    loadChildren: () =>
+      import('./portfolio/portfolio.module').then((m) => m.PortfolioModule),
   },
 ];
 
