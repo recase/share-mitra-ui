@@ -12,6 +12,29 @@ export interface LiveStockPrice {
   totalVolume: number;
 }
 
+export interface PortfolioSummary {
+  totalInvestment: number;
+  totalAmount: number;
+  totalProfit: number;
+  todaysProfit: number;
+  actualProfit: number;
+}
+
+export interface PortfolioDetail {
+  symbol: string;
+  name: string;
+  totalStock: number;
+  lastTradedPrice: number;
+  totalStockPrice: number;
+  stockType: string;
+  totalInvestment: number;
+  totalStockInvestment: number;
+  profitPercentage: number;
+  change: number;
+  overallProfit: number;
+  todaysProfit: number;
+}
+
 export interface StockPrice {
   id: number;
   symbol: string;
@@ -61,4 +84,12 @@ export interface StockState {
 export interface LiveState {
   liveStockPriceList: LiveStockList;
   // liveStockLoading: boolean;
+}
+
+export interface NewUser {
+  email: string;
+  firstName: string;
+  middleName: string | null;
+  lastName: string;
+  password: string;
 }
