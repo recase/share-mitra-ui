@@ -1,0 +1,52 @@
+<div class="summary-data-contianer">
+  <div class="section">
+    <div class="section-data">
+      <div class="label">Total investment</div>
+      <div class="value">
+        {{ summaryData.totalInvestment }}
+      </div>
+    </div>
+    <div class="section-data">
+      <div class="label">Total Amount</div>
+      <div class="value">
+        {{ summaryData.totalAmount }}
+      </div>
+    </div>
+    <div class="section-data">
+      <div class="label">Total Profit</div>
+      <div
+        class="value"
+        [ngClass]="{
+          profit: summaryData.totalProfit > 0,
+          loss: summaryData.totalProfit < 0
+        }"
+      >
+        {{ summaryData.totalProfit }}
+      </div>
+    </div>
+    <div class="section-data">
+      <div class="label">Today's profit</div>
+      <div
+        class="value"
+        [ngClass]="{
+          profit: summaryData.todaysProfit > 0,
+          loss: summaryData.todaysProfit < 0
+        }"
+      >
+        {{ summaryData.todaysProfit }}
+      </div>
+    </div>
+    <div class="section-data">
+      <div class="label">Actual profit</div>
+      <div
+        class="value"
+        [ngClass]="{
+          profit: summaryData.actualProfit > 0,
+          loss: summaryData.actualProfit < 0
+        }"
+      >
+        {{ summaryData.actualProfit }}
+      </div>
+    </div>
+  </div>
+</div>

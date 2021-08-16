@@ -1,0 +1,48 @@
+@import "../../../../../styles.scss";
+
+.summary-data-contianer {
+  padding: 24px;
+  border: 1px solid greenyellow;
+  border-radius: 8px;
+  box-shadow: 2px 4px 7px 4px rgb(0 0 0 / 50%);
+
+  .section {
+    display: flex;
+    flex-wrap: wrap;
+    .section-data {
+      margin-bottom: 12px;
+      width: 33%;
+
+      .label {
+        font-size: $font-size-b;
+        text-align: center;
+      }
+
+      .value {
+        font-size: $font-size-m;
+        text-align: center;
+        font-weight: $bold;
+      }
+      .value::before {
+        content: "Rs";
+      }
+      .profit {
+        color: $dark-green;
+      }
+      .loss {
+        color: $red;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 858px) {
+  .summary-data-contianer {
+    padding: 12px;
+    .section {
+      .section-data {
+        width: 50%;
+      }
+    }
+  }
+}
