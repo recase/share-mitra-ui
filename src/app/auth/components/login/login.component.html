@@ -2,7 +2,9 @@
   <div class="login-container">
     <div class="form-section login-section">
       <div class="header">Login</div>
-      <div class="response-error">User does not exist!</div>
+      <div class="response-error" *ngIf="responseError && errors">
+        {{ errors }}
+      </div>
       <form [formGroup]="loginFormGroup">
         <div class="field-section">
           <div class="label">Email:</div>
@@ -50,7 +52,8 @@
         </div>
       </form>
       <div class="link-container">
-        New user? <a href="/auth/signup" class="link-label">Register here.</a>
+        New user?
+        <a (click)="navigateToSignup()" class="link-label">Register here.</a>
       </div>
     </div>
     <div class="side-background-section"></div>

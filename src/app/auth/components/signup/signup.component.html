@@ -2,7 +2,9 @@
   <div class="signup-container">
     <div class="form-section signup-section">
       <div class="header">Signup</div>
-      <div class="response-error">Email address already exist!</div>
+      <div class="response-error" *ngIf="reponseError && errors">
+        {{ errors }}
+      </div>
       <form [formGroup]="signupFormGroup">
         <div class="field-section">
           <div class="label">Email:</div>
@@ -40,6 +42,10 @@
               Required
             </div>
           </div>
+        </div>
+        <div class="field-section">
+          <div class="label">Middle Name:(Optional)</div>
+          <input type="text" formControlName="middleName" class="value" />
         </div>
         <div class="field-section">
           <div class="label">Last Name:</div>
@@ -106,7 +112,8 @@
         </div>
       </form>
       <div class="link-container">
-        Already has account? <a href="/auth/login" class="link-label">Login</a>.
+        Already has account?
+        <a (click)="navigateToLogin()" class="link-label">Login</a>.
       </div>
     </div>
     <div class="side-background-section"></div>
