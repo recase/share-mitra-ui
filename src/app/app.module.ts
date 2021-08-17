@@ -13,6 +13,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { appReducer } from './store/app-reducer';
 import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './auth/state/auth.effects';
 
 @NgModule({
   declarations: [AppComponent, NavBarComponent],
@@ -21,7 +22,7 @@ import { EffectsModule } from '@ngrx/effects';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    EffectsModule.forRoot(),
+    EffectsModule.forRoot([AuthEffects]),
     StoreModule.forRoot(appReducer),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
