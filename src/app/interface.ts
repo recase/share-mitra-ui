@@ -93,3 +93,26 @@ export interface NewUser {
   lastName: string;
   password: string;
 }
+
+export interface User {
+  id: number;
+  firstName: string;
+  middleName: string;
+  lastName: string;
+  email: string;
+  role: string;
+}
+
+export interface loginResponse {
+  access: string;
+  refresh: string;
+}
+
+export interface AuthState {
+  isAuthenticated: boolean;
+  loggedInUser: User | null;
+  apiLoading: boolean;
+  loginErrorMessage: string | null;
+  signupErrorMessage: string | null;
+  userDetailErrorMessage: string | null;
+}
