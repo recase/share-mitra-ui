@@ -14,6 +14,7 @@ import { environment } from 'src/environments/environment';
 import { appReducer } from './store/app-reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './auth/state/auth.effects';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 @NgModule({
   declarations: [AppComponent, NavBarComponent],
@@ -34,6 +35,11 @@ import { AuthEffects } from './auth/state/auth.effects';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: KeyFormattingInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
       multi: true,
     },
   ],
