@@ -17,11 +17,17 @@
 
   <ul [ngClass]="{ 'show-nav': showNav }">
     <li>
-      <a href="/live" class="live">Live</a>
+      <a (click)="navigateTo(['live'])" class="live">Live</a>
     </li>
-    <li><a href="/" class="active">Market</a></li>
-    <li><a href="/portfolio">portfolio</a></li>
-    <li><a href="/auth/login">login</a></li>
-    <li><a href="/auth/signup">signup</a></li>
+    <li><a (click)="navigateTo([''])" class="active">Market</a></li>
+    <li><a (click)="navigateTo(['portfolio'])">portfolio</a></li>
+    <li *ngIf="!isAuthenticated">
+      <a (click)="navigateTo(['auth', 'login'])">login</a>
+    </li>
+    <li *ngIf="!isAuthenticated">
+      <a (click)="navigateTo(['auth', 'signup'])">signup</a>
+    </li>
+    <li *ngIf="isAuthenticated && user">{{ user.email }}</li>
+    <li *ngIf="isAuthenticated"><a (click)="logout()">logout</a></li>
   </ul>
 </nav>
