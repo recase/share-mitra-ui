@@ -1,26 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { NewUser } from 'src/app/interface';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+import { AuthState, NewUser } from 'src/app/interface';
+import { signupAction } from '../../state/auth.actions';
+import { signupErrorMsgSelector } from '../../state/auth.selectors';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss'],
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent implements OnInit, OnDestroy {
   public signupFormGroup!: FormGroup;
   public hasFormError = false;
   public passwordMatchError = false;
+  public errors!: string | null;
+  public reponseError = false;
+  private apiErrorSubscription!: Subscription;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private store: Store<AuthState>,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.initializeSignupForm();
+    this.apiErrorSubscription = this.store
+      .select(signupErrorMsgSelector)
+      .subscribe((error) => {
+        this.errors = error;
+      });
   }
 
   private initializeSignupForm(): void {
@@ -54,7 +71,9 @@ export class SignupComponent implements OnInit {
       email: this.signupFormGroup.value.email,
       password: this.signupFormGroup.value.password,
     };
-    console.log(this.signupFormGroup);
+    // console.log(this.signupFormGroup);
+    this.reponseError = true;
+    this.store.dispatch(signupAction({ newUser }));
   }
 
   public resetError(): void {
@@ -64,5 +83,15 @@ export class SignupComponent implements OnInit {
 
   get signupFrom(): { [key: string]: AbstractControl } {
     return this.signupFormGroup.controls;
+  }
+
+  public navigateToLogin(): void {
+    this.router.navigate(['auth', 'login']);
+  }
+
+  ngOnDestroy(): void {
+    if (this.apiErrorSubscription) {
+      this.apiErrorSubscription.unsubscribe();
+    }
   }
 }
