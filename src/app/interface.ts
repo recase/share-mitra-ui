@@ -52,7 +52,7 @@ export interface CompanyData {
   id: number;
   name: string;
   symbol: string;
-  instrumentType: string;
+  instrumentType?: string;
   sector: string;
 }
 
@@ -115,4 +115,46 @@ export interface AuthState {
   loginErrorMessage: string | null;
   signupErrorMessage: string | null;
   userDetailErrorMessage: string | null;
+}
+
+export interface Transaction {
+  id?: number;
+  units?: number | null;
+  costPerUnit?: number | null;
+  bonusAmount?: number | null;
+  transactionDate: string;
+  transactionType: string;
+  capitalGainTax?: number | null;
+  casbaCharge?: number | null;
+  auctionCharge?: number | null;
+  dpCharge?: number | null;
+  brokerCharge?: number | null;
+  sebonCharge?: number | null;
+  investment?: number | null;
+  totalInvestment?: number | null;
+  soldAmount?: number | null;
+  receivableAmount?: number | null;
+}
+
+export interface Portfolio {
+  id?: number;
+  companyId?: number;
+  company?: CompanyData;
+  ltp?: number | null;
+  change?: number;
+  previousClosePrice?: number | null;
+  totalUnits?: number;
+  investment?: number;
+  totalInvestment?: number;
+  totalSoldAmount?: number;
+  totalReceivedAmount?: number;
+  totalDividendAmount?: number;
+  transactions: Transaction[] | null;
+  overAllProfitLoss?: number;
+  todaysProfitLoss?: number;
+  overAllProfitLossPercentage?: number;
+}
+
+export interface CompletePortfolio {
+  protfolios: Portfolio[];
 }
