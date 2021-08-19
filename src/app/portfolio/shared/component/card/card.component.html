@@ -1,74 +1,94 @@
 <div class="card-container" [ngClass]="{ 'loss-container': true }">
   <div class="header">
-    <div class="symbol">{{ portfolio.symbol }}</div>
+    <div class="symbol">{{ portfolio.company?.symbol }}</div>
     <div class="ltp">
       <div class="label">LTP</div>
       <div
         class="value"
         [ngClass]="{
-          'profit-value': portfolio.change > 0,
-          'loss-value': portfolio.change < 0
+          'profit-value': portfolio && portfolio.change && portfolio.change > 0,
+          'loss-value': portfolio && portfolio.change && portfolio.change < 0
         }"
       >
-        {{ portfolio.lastTradedPrice }} ({{ portfolio.change }}%)
+        {{ portfolio.ltp }} ({{ portfolio.change }}%)
       </div>
     </div>
   </div>
   <div class="sub-header">
-    <div class="name">{{ portfolio.name }}</div>
+    <div class="name">{{ portfolio.company?.name }}</div>
   </div>
   <div class="detail-container">
     <div class="fields">
       <div class="label">Units</div>
-      <div class="value">{{ portfolio.totalStock }}</div>
+      <div class="value">{{ portfolio.totalUnits }}</div>
+    </div>
+    <div class="fields">
+      <div class="label">Investment</div>
+      <div class="value">{{ portfolio.investment }}</div>
     </div>
     <div class="fields">
       <div class="label">Total investment</div>
       <div class="value">{{ portfolio.totalInvestment }}</div>
     </div>
-    <div class="fields">
-      <div class="label">Total cost</div>
-      <div class="value">{{ portfolio.totalStockInvestment }}</div>
+    <div class="fields" *ngIf="portfolio.totalSoldAmount">
+      <div class="label">Sold amount</div>
+      <div class="value">{{ portfolio.totalSoldAmount }}</div>
     </div>
-    <!-- <div class="fields">
-      <div class="label">Type</div>
-      <div class="value">{{ portfolio.stockType }}</div>
-    </div> -->
-    <div class="fields">
+    <div class="fields" *ngIf="portfolio.totalReceivedAmount">
+      <div class="label">Receivable amount</div>
+      <div class="value">{{ portfolio.totalReceivedAmount }}</div>
+    </div>
+    <div class="fields" *ngIf="portfolio.totalDividendAmount">
+      <div class="label">Dividend amount</div>
+      <div class="value">{{ portfolio.totalDividendAmount }}</div>
+    </div>
+    <div class="fields" *ngIf="portfolio.overAllProfitLoss">
       <div class="label">Overall profit</div>
       <div
         class="value"
         [ngClass]="{
-          'profit-value': portfolio.overallProfit > 0,
-          'loss-value': portfolio.overallProfit < 0
+          'profit-value': portfolio.overAllProfitLoss > 0,
+          'loss-value': portfolio.overAllProfitLoss < 0
         }"
       >
-        {{ portfolio.overallProfit }}
+        {{ portfolio.overAllProfitLoss }}
       </div>
     </div>
-    <div class="fields">
+    <div class="fields" *ngIf="!portfolio.overAllProfitLoss">
+      <div class="label">Overall profit</div>
+      <div class="value">0.00</div>
+    </div>
+    <div class="fields" *ngIf="portfolio.overAllProfitLossPercentage">
       <div class="label">Profit percentage</div>
       <div
         class="value"
         [ngClass]="{
-          'profit-value': portfolio.profitPercentage > 0,
-          'loss-value': portfolio.profitPercentage < 0
+          'profit-value': portfolio.overAllProfitLossPercentage > 0,
+          'loss-value': portfolio.overAllProfitLossPercentage < 0
         }"
       >
-        {{ portfolio.profitPercentage }}%
+        {{ portfolio.overAllProfitLossPercentage }}%
       </div>
     </div>
-    <div class="fields">
+    <div class="fields" *ngIf="!portfolio.overAllProfitLossPercentage">
+      <div class="label">Profit percentage</div>
+      <div class="value">0.00%</div>
+    </div>
+    <div class="fields" *ngIf="portfolio.todaysProfitLoss">
       <div class="label">Today's profit</div>
       <div
         class="value"
         [ngClass]="{
-          'profit-value': portfolio.todaysProfit > 0,
-          'loss-value': portfolio.todaysProfit < 0
+          'profit-value': portfolio.todaysProfitLoss > 0,
+          'loss-value': portfolio.todaysProfitLoss < 0
         }"
       >
-        {{ portfolio.todaysProfit }}
+        {{ portfolio.todaysProfitLoss }}
       </div>
+    </div>
+    <div class="fields" *ngIf="!portfolio.todaysProfitLoss">
+      <div class="label">Today's profit</div>
+      <div class="value">0.00</div>
     </div>
   </div>
 </div>
