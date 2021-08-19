@@ -396,6 +396,7 @@ export class PortfolioListComponent implements OnInit {
     this.dialog.open(PortfolioModalComponent, {
       data: portfolio,
       panelClass: 'portfolio-modal',
+      disableClose: true,
     });
   }
 }
