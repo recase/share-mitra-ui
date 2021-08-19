@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { PortfolioDetail, PortfolioSummary } from 'src/app/interface';
+import { MatDialog } from '@angular/material/dialog';
+import {
+  Portfolio,
+  PortfolioDetail,
+  PortfolioSummary,
+} from 'src/app/interface';
+import { PortfolioModalComponent } from '../portfolio-modal/portfolio-modal.component';
 
 @Component({
   selector: 'app-portfolio-list',
@@ -14,6 +20,146 @@ export class PortfolioListComponent implements OnInit {
     totalProfit: -110000,
     actualProfit: 95000,
   };
+
+  public portfolioData: Portfolio[] = [
+    {
+      id: 51,
+      company: {
+        id: 339,
+        name: 'UnionLife Insurance Co. Ltd.',
+        symbol: 'ULI',
+        sector: 'Life Insurance',
+      },
+      ltp: 777.0,
+      previousClosePrice: 777.0,
+      totalUnits: 20,
+      totalInvestment: 6070.75,
+      totalSoldAmount: 2000.0,
+      totalReceivedAmount: 1966.7,
+      totalDividendAmount: 1000.0,
+      change: 3.2,
+      transactions: [
+        {
+          id: 47,
+          units: 10,
+          investment: 1000.0,
+          costPerUnit: 100.0,
+          bonusAmount: null,
+          transactionType: 'IPO',
+          transactionDate: '2021-08-05',
+          capitalGainTax: null,
+          soldAmount: null,
+          casbaCharge: 25.0,
+          auctionCharge: null,
+          dpCharge: null,
+          brokerCharge: null,
+          sebonCharge: null,
+        },
+        {
+          id: 48,
+          units: 10,
+          investment: 5000.0,
+          costPerUnit: 500.0,
+          bonusAmount: null,
+          transactionType: 'secondary buy',
+          transactionDate: '2021-08-05',
+          capitalGainTax: null,
+          soldAmount: null,
+          casbaCharge: null,
+          auctionCharge: null,
+          dpCharge: 25.0,
+          brokerCharge: 20.0,
+          sebonCharge: 0.75,
+        },
+        {
+          id: 49,
+          units: 5,
+          investment: null,
+          costPerUnit: null,
+          bonusAmount: null,
+          transactionType: 'bonus',
+          transactionDate: '2021-08-05',
+          capitalGainTax: null,
+          soldAmount: null,
+          casbaCharge: null,
+          auctionCharge: null,
+          dpCharge: null,
+          brokerCharge: null,
+          sebonCharge: null,
+        },
+        {
+          id: 50,
+          units: 5,
+          investment: 2000.0,
+          costPerUnit: 400.0,
+          bonusAmount: null,
+          transactionType: 'sell',
+          transactionDate: '2021-08-05',
+          capitalGainTax: null,
+          soldAmount: null,
+          casbaCharge: null,
+          auctionCharge: null,
+          dpCharge: 25.0,
+          brokerCharge: 8.0,
+          sebonCharge: 0.3,
+        },
+        {
+          id: 51,
+          units: null,
+          investment: null,
+          costPerUnit: null,
+          bonusAmount: 1000.0,
+          transactionType: 'dividend',
+          transactionDate: '2021-08-05',
+          capitalGainTax: null,
+          soldAmount: null,
+          casbaCharge: null,
+          auctionCharge: null,
+          dpCharge: null,
+          brokerCharge: null,
+          sebonCharge: null,
+        },
+      ],
+    },
+  ];
+
+  // [
+  //   {
+  //     id: 1,
+  // company:{
+  //   id: 2,
+  //   name: 'Nabil Bank Limited',
+  //   symbol: 'NABIL',
+  //   sector: 'banking'
+  // },
+  // ltp: 1505.23,
+  // previousClosePrice: 1490.20,
+  // totalUnits: 25,
+  // totalInvestment: 35000,
+  // totalSoldAmount: 0.0,
+  // totalReceivedAmount: 0.0,
+  // totalDividendAmount: 0.0,
+  // transactions: [
+  //   {
+  //     id: 12
+  // transactionDate: '2020-5-3',
+  // transactionType: string;
+  // units?: number | null;
+  // costPerUnit?: number | null;
+  // investment?: number | null;
+  // bonusAmount?: number | null;
+  // extraCharges?: number | null;
+  // capitalGainTax?: number | null;
+  // soldAmount?: number | null;
+  // casbaCharge?: number | null;
+  // auctionCharge?: number | null;
+  // dpCharge?: number | null;
+  // brokerCharge?: number | null;
+  // sebonCharge?: number | null;
+  //   }
+  // ]
+  //   }
+  // ]
 
   public portfolioList: PortfolioDetail[] = [
     {
@@ -242,7 +388,14 @@ export class PortfolioListComponent implements OnInit {
     },
   ];
 
-  constructor() {}
+  constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {}
+
+  public openPortfolioModal(portfolio: Portfolio): void {
+    this.dialog.open(PortfolioModalComponent, {
+      data: portfolio,
+      panelClass: 'portfolio-modal',
+    });
+  }
 }
