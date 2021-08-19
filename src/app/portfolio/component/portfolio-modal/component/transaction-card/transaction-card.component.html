@@ -137,12 +137,6 @@
         <div class="label">Price per unit</div>
         <div class="value">{{ transaction.costPerUnit | number: "1.2-2" }}</div>
       </div>
-      <div class="fields" *ngIf="transaction.soldAmount">
-        <div class="label">Total price</div>
-        <div class="value">
-          {{ transaction.soldAmount | number: "1.2-2" }}
-        </div>
-      </div>
       <div class="fields" *ngIf="transaction.dpCharge">
         <div class="label">DP charge</div>
         <div class="value">{{ transaction.dpCharge | number: "1.2-2" }}</div>
@@ -155,6 +149,12 @@
         <div class="label">Broker charge</div>
         <div class="value">
           {{ transaction.brokerCharge | number: "1.2-2" }}
+        </div>
+      </div>
+      <div class="fields" *ngIf="transaction.soldAmount">
+        <div class="label">sold amount</div>
+        <div class="value">
+          {{ transaction.soldAmount | number: "1.2-2" }}
         </div>
       </div>
       <div class="fields" *ngIf="transaction.receivableAmount">
