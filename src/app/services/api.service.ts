@@ -10,6 +10,7 @@ import {
   loginResponse,
   NewUser,
   User,
+  CompletePortfolio,
 } from '../interface';
 
 @Injectable({
@@ -27,6 +28,7 @@ export class ApiService {
   private signupUrl = this.baseUrl + 'register/';
   private userInfoUrl = this.baseUrl + 'user-info/';
   private refreshTokenUrl = this.baseUrl + 'token/refresh';
+  private portfolioUrl = this.baseUrl + 'portfolio/';
 
   constructor(private http: HttpClient) {}
 
@@ -71,6 +73,10 @@ export class ApiService {
     return this.http.post<{ access: string }>(this.refreshTokenUrl, {
       refresh: refreshToken,
     });
+  }
+
+  public retrievePortfolioData(): Observable<CompletePortfolio> {
+    return this.http.get<CompletePortfolio>(this.portfolioUrl);
   }
 
   public getToken(): string | null {
