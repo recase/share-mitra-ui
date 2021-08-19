@@ -9,6 +9,10 @@ import { PortfolioListComponent } from './component/portfolio-list/portfolio-lis
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
+import { PortfolioModalComponent } from './component/portfolio-modal/portfolio-modal.component';
+import { TransactionCardComponent } from './component/portfolio-modal/component/transaction-card/transaction-card.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -16,13 +20,17 @@ import { MatIconModule } from '@angular/material/icon';
     SummaryComponent,
     CardComponent,
     PortfolioListComponent,
+    PortfolioModalComponent,
+    TransactionCardComponent,
   ],
   imports: [
     CommonModule,
+    SharedModule,
     PortfolioRoutingModule,
     MatCardModule,
     MatButtonModule,
     MatIconModule,
+    MatDialogModule,
   ],
 })
 export class PortfolioModule {}
