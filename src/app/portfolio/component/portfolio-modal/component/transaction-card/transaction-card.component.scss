@@ -1,0 +1,63 @@
+@import "../../../../../../styles.scss";
+
+.transaction-card {
+  border-radius: 6px;
+  padding: 6px 8px;
+  margin-top: 16px;
+  box-shadow: 2px 4px 7px 4px rgb(0 0 0 / 50%);
+
+  .collapse-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .label {
+      line-height: $font-size-xl;
+      font-size: $font-size-b;
+
+      .units,
+      .transaction-type,
+      .cost {
+        font-weight: $bold;
+      }
+    }
+
+    .action-container {
+      display: flex;
+      .action-icon {
+        cursor: pointer;
+      }
+      .action-icon:first-child {
+        margin-right: 8px;
+      }
+    }
+  }
+
+  .expand-container {
+    .detail-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+
+      .fields {
+        width: 33%;
+        margin-bottom: 8px;
+        text-align: center;
+      }
+    }
+    .action-container {
+      display: flex;
+      justify-content: flex-end;
+      .action-icon {
+        cursor: pointer;
+      }
+      .action-icon:first-child {
+        margin-right: 8px;
+      }
+    }
+  }
+
+  .date {
+    font-style: italic;
+  }
+}
