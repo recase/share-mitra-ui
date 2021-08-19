@@ -150,6 +150,7 @@ export interface Portfolio {
   totalReceivedAmount?: number;
   totalDividendAmount?: number;
   transactions: Transaction[] | null;
+  currentValue: number;
   overAllProfitLoss?: number;
   todaysProfitLoss?: number;
   overAllProfitLossPercentage?: number;
@@ -157,4 +158,9 @@ export interface Portfolio {
 
 export interface CompletePortfolio {
   protfolios: Portfolio[];
+}
+
+export interface PortfolioState {
+  userPortfolioData: CompletePortfolio | null;
+  portfolioApiLoading: boolean;
 }
