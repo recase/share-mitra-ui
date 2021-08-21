@@ -1,0 +1,147 @@
+<div class="add-portfolio-container">
+  <div class="header">Add Portfolio</div>
+  <div class="form-contianer">
+    <form [formGroup]="portfolioFormGroup">
+      <div class="form-fields">
+        <mat-form-field appearance="fill">
+          <mat-label>Stock</mat-label>
+          <mat-select formControlName="companyId">
+            <mat-option
+              *ngFor="let company of compnayList"
+              [value]="company.id"
+            >
+              {{ company.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="group-container">
+        <div class="form-fields" *ngIf="portfolioForm.transactionType.enabled">
+          <mat-form-field appearance="fill">
+            <mat-label>Transaction type</mat-label>
+            <mat-select formControlName="transactionType">
+              <mat-option
+                *ngFor="let transactionType of transactionTypeList"
+                [value]="transactionType.value"
+              >
+                {{ transactionType.label }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="form-fields" *ngIf="portfolioForm.transactionDate.enabled">
+          <mat-form-field appearance="fill">
+            <mat-label>Transaction date</mat-label>
+            <input
+              matInput
+              readonly
+              [matDatepickerFilter]="myFilter"
+              [max]="today"
+              [matDatepicker]="transactionDate"
+              formControlName="transactionDate"
+              (click)="transactionDate.open()"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="transactionDate"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #transactionDate> </mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="group-container">
+        <div class="form-fields" *ngIf="portfolioForm.units.enabled">
+          <mat-form-field appearance="fill" floatLabel="always">
+            <mat-label>Units</mat-label>
+            <input
+              matInput
+              type="number"
+              formControlName="units"
+              class="example-right-align"
+              placeholder="0"
+            />
+            <mat-error *ngIf="portfolioForm?.units?.errors?.invalid"
+              >units required</mat-error
+            >
+            <mat-error *ngIf="portfolioForm?.units?.errors?.minNumber"
+              >Only positive value</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <div class="form-fields" *ngIf="portfolioForm.pricePerUnit.enabled">
+          <mat-form-field appearance="fill" floatLabel="always">
+            <mat-label>Cost per Unit</mat-label>
+            <input
+              matInput
+              type="number"
+              formControlName="pricePerUnit"
+              class="example-right-align"
+              placeholder="0"
+            />
+            <span matPrefix>Rs&nbsp;</span>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form-fields" *ngIf="portfolioForm.casbaCharge.enabled">
+        <mat-form-field appearance="fill" floatLabel="always">
+          <mat-label>C-ASBA Charge</mat-label>
+          <input
+            matInput
+            type="number"
+            formControlName="casbaCharge"
+            class="example-right-align"
+            placeholder="0"
+          />
+          <span matPrefix>Rs&nbsp;</span>
+        </mat-form-field>
+      </div>
+      <div class="form-fields" *ngIf="portfolioForm.auctionCharge.enabled">
+        <mat-form-field appearance="fill" floatLabel="always">
+          <mat-label>Auction charge</mat-label>
+          <input
+            matInput
+            type="number"
+            formControlName="auctionCharge"
+            class="example-right-align"
+            placeholder="0"
+          />
+          <span matPrefix>Rs&nbsp;</span>
+        </mat-form-field>
+      </div>
+      <div class="form-fields" *ngIf="portfolioForm.dividendAmount.enabled">
+        <mat-form-field appearance="fill" floatLabel="always">
+          <mat-label>Dividend amount</mat-label>
+          <input
+            matInput
+            type="number"
+            formControlName="dividendAmount"
+            class="example-right-align"
+            placeholder="0"
+          />
+          <span matPrefix>Rs&nbsp;</span>
+        </mat-form-field>
+      </div>
+
+      <div class="action-container">
+        <button
+          mat-raised-button
+          aria-label="back button"
+          class="back"
+          [disabled]="createPortfolioLoading"
+          (click)="closeModal()"
+        >
+          <mat-icon>arrow_back</mat-icon> back
+        </button>
+        <button
+          mat-raised-button
+          *ngIf="portfolioFormGroup.valid"
+          [disabled]="createPortfolioLoading"
+          (click)="save()"
+        >
+          <mat-icon>save</mat-icon>save
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
