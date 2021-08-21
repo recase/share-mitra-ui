@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { PortfolioState } from '../interface';
-import { retrievePortfolioData } from './store/portfolio.actions';
+import {
+  retrieveCompanyList,
+  retrievePortfolioData,
+} from './store/portfolio.actions';
 
 @Component({
   selector: 'app-portfolio',
@@ -13,5 +16,6 @@ export class PortfolioComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(retrievePortfolioData());
+    this.store.dispatch(retrieveCompanyList());
   }
 }
