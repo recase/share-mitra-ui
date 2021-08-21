@@ -7,6 +7,7 @@
       <div *ngFor="let transaction of portfolio.transactions">
         <app-transaction-card
           [transaction]="transaction"
+          [portfolioId]="portfolio.id"
           class="transaction-card"
         ></app-transaction-card>
       </div>
@@ -21,7 +22,12 @@
     >
       <mat-icon>arrow_back</mat-icon>
     </button>
-    <button mat-fab aria-label="Add button" class="add-transaction">
+    <button
+      mat-fab
+      aria-label="Add button"
+      class="add-transaction"
+      (click)="addTransaction()"
+    >
       <mat-icon>add_circle_outline</mat-icon>
     </button>
   </div>
