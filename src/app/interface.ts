@@ -56,6 +56,11 @@ export interface CompanyData {
   sector: string;
 }
 
+export interface CompanyListingData {
+  id: number;
+  name: string;
+}
+
 export interface Sector {
   id: number;
   name: string;
@@ -117,8 +122,14 @@ export interface AuthState {
   userDetailErrorMessage: string | null;
 }
 
+export interface TransactionTypeData {
+  label: string;
+  value: string;
+}
+
 export interface Transaction {
   id?: number;
+  portfolio?: number;
   units?: number | null;
   costPerUnit?: number | null;
   bonusAmount?: number | null;
@@ -150,7 +161,7 @@ export interface Portfolio {
   totalReceivedAmount?: number;
   totalDividendAmount?: number;
   transactions: Transaction[] | null;
-  currentValue: number;
+  currentValue?: number;
   overAllProfitLoss?: number;
   todaysProfitLoss?: number;
   overAllProfitLossPercentage?: number;
@@ -163,4 +174,13 @@ export interface CompletePortfolio {
 export interface PortfolioState {
   userPortfolioData: CompletePortfolio | null;
   portfolioApiLoading: boolean;
+  companyList: CompanyListingData[] | null;
+  createPortfolioApiLoading: boolean;
+  transactionApiLoading: boolean;
+}
+
+export interface TransactionModalInterface {
+  option: string;
+  portfolioId: number;
+  transaction?: Transaction;
 }
