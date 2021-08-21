@@ -57,6 +57,7 @@ export class TokenInterceptor implements HttpInterceptor {
     if (!this.isRefreshing) {
       this.isRefreshing = true;
       this.refreshTokenSubject.next(null);
+      localStorage.removeItem('accessToken');
 
       return this.api.refreshToken().pipe(
         switchMap((token: { access: string }) => {
