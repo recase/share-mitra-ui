@@ -9,7 +9,6 @@ const portfolioSelector =
 export const portfolioDataSelector = createSelector(
   portfolioSelector,
   (state) => {
-    debugger;
     return state.userPortfolioData;
   }
 );
@@ -18,5 +17,26 @@ export const portfolioApiLoading = createSelector(
   portfolioSelector,
   (state) => {
     return state.portfolioApiLoading;
+  }
+);
+
+export const companyListSelector = createSelector(
+  portfolioSelector,
+  (state) => {
+    return state.companyList;
+  }
+);
+
+export const createPortfolioApiSelector = createSelector(
+  portfolioSelector,
+  (state) => {
+    return state.createPortfolioApiLoading;
+  }
+);
+
+export const transactionApiLoadingSelector = createSelector(
+  portfolioSelector,
+  (state) => {
+    return state.transactionApiLoading;
   }
 );
