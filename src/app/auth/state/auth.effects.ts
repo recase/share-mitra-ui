@@ -71,7 +71,6 @@ export class AuthEffects {
         this.store.dispatch(updateApiLoadingAction({ flag: true }));
         return this.api.login(action.email, action.password).pipe(
           map((data) => {
-            console.log(data);
             localStorage.setItem('accessToken', data.access);
             localStorage.setItem('refreshToken', data.refresh);
             this.store.dispatch(updateApiLoadingAction({ flag: false }));
