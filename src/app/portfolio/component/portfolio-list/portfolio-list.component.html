@@ -11,7 +11,12 @@
     </div>
   </div>
   <div class="add-action">
-    <button mat-fab aria-label="Add button" class="add-stock">
+    <button
+      mat-fab
+      aria-label="Add button"
+      class="add-stock"
+      (click)="openAddPortfolioModal()"
+    >
       <mat-icon>add_circle_outline</mat-icon>
     </button>
   </div>

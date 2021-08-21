@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { Portfolio, PortfolioState, PortfolioSummary } from 'src/app/interface';
+import { AddPrtfolioComponent } from '../../modals/add-prtfolio/add-prtfolio.component';
 import { portfolioDataSelector } from '../../store/portfolio.selectors';
 import { PortfolioModalComponent } from '../portfolio-modal/portfolio-modal.component';
 
@@ -22,6 +23,8 @@ export class PortfolioListComponent implements OnInit, OnDestroy {
 
   public portfolioData: Portfolio[] | undefined;
   private portfolioSubscription!: Subscription;
+  private selectedPortfolioId: number | undefined;
+  private dialogRef!: MatDialogRef<PortfolioModalComponent>;
 
   constructor(
     private dialog: MatDialog,
@@ -29,22 +32,46 @@ export class PortfolioListComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    debugger;
     this.portfolioSubscription = this.store
       .select(portfolioDataSelector)
       .subscribe((data) => {
-        debugger;
         this.portfolioData = data?.protfolios;
+
+        this.updateModalData();
       });
   }
 
+  private updateModalData(): void {
+    if (
+      this.selectedPortfolioId &&
+      this.dialogRef &&
+      this.dialogRef.componentInstance &&
+      this.portfolioData?.length
+    ) {
+      const selectedPortfolio = this.portfolioData.find(
+        (data) => data.id === this.selectedPortfolioId
+      );
+      if (selectedPortfolio) {
+        this.dialogRef.componentInstance.portfolio = selectedPortfolio;
+      }
+    }
+  }
+
   public openPortfolioModal(portfolio: Portfolio): void {
-    this.dialog.open(PortfolioModalComponent, {
+    this.selectedPortfolioId = portfolio.id;
+    this.dialogRef = this.dialog.open(PortfolioModalComponent, {
       data: portfolio,
       panelClass: 'portfolio-modal',
       disableClose: true,
     });
   }
+
+  public openAddPortfolioModal(): void {
+    this.dialog.open(AddPrtfolioComponent, {
+      panelClass: 'portfolio-add-modal',
+    });
+  }
+
   ngOnDestroy(): void {
     if (this.portfolioSubscription) {
       this.portfolioSubscription.unsubscribe();
