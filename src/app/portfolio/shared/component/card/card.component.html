@@ -1,4 +1,10 @@
-<div class="card-container" [ngClass]="{ 'loss-container': true }">
+<div
+  class="card-container"
+  [ngClass]="{
+    'loss-container': portfolio.change && portfolio.change < 0,
+    'profit-container': portfolio.change && portfolio.change > 0
+  }"
+>
   <div class="header">
     <div class="symbol">{{ portfolio.company?.symbol }}</div>
     <div class="ltp">
