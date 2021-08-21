@@ -11,6 +11,9 @@ import {
   NewUser,
   User,
   CompletePortfolio,
+  CompanyListingData,
+  Portfolio,
+  Transaction,
 } from '../interface';
 
 @Injectable({
@@ -29,6 +32,8 @@ export class ApiService {
   private userInfoUrl = this.baseUrl + 'user-info/';
   private refreshTokenUrl = this.baseUrl + 'token/refresh';
   private portfolioUrl = this.baseUrl + 'portfolio/';
+  private portfolioTransactionUrl = this.baseUrl + 'portfolio-transaction/';
+  private companyListingUrl = this.baseUrl + 'company/listing-data/';
 
   constructor(private http: HttpClient) {}
 
@@ -38,6 +43,10 @@ export class ApiService {
 
   public retrieveCompanies(): Observable<CompanyData[]> {
     return this.http.get<CompanyData[]>(this.companiesUrl);
+  }
+
+  public retrieveCompanyListing(): Observable<CompanyListingData[]> {
+    return this.http.get<CompanyListingData[]>(this.companyListingUrl);
   }
 
   public retrieveLivePrice(): Observable<LiveStockList> {
@@ -79,9 +88,31 @@ export class ApiService {
     return this.http.get<CompletePortfolio>(this.portfolioUrl);
   }
 
+  public createPortfolio(portfolio: Portfolio): Observable<any> {
+    return this.http.post<any>(this.portfolioUrl, portfolio);
+  }
+
+  public createPortfolioTransaction(transaction: Transaction): Observable<any> {
+    return this.http.post<any>(this.portfolioTransactionUrl, transaction);
+  }
+
+  public updatePortfolioTransaction(transaction: Transaction): Observable<any> {
+    return this.http.put<any>(
+      this.portfolioTransactionUrl + `${transaction.id}/`,
+      transaction
+    );
+  }
+
+  public deletePortfolioTransaction(transactionId: number): Observable<any> {
+    return this.http.delete<any>(
+      this.portfolioTransactionUrl + `${transactionId}/`
+    );
+  }
+
   public getToken(): string | null {
     return localStorage.getItem('accessToken');
   }
+
   public getRefreshToken(): string | null {
     return localStorage.getItem('refreshToken');
   }
