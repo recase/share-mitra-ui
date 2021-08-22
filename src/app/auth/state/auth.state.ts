@@ -1,7 +1,7 @@
 import { AuthState } from 'src/app/interface';
 
 export const authState: AuthState = {
-  isAuthenticated: false,
+  isAuthenticated: null,
   loggedInUser: null,
   apiLoading: false,
   loginErrorMessage: null,

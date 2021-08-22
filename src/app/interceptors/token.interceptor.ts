@@ -9,6 +9,9 @@ import {
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { ApiService } from '../services/api.service';
 import { catchError, filter, switchMap, take } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { AuthState } from '../interface';
+import { updateIsAuthenticate } from '../auth/state/auth.actions';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -16,7 +19,7 @@ export class TokenInterceptor implements HttpInterceptor {
   private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(
     null
   );
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService, private store: Store<AuthState>) {}
 
   intercept(
     request: HttpRequest<unknown>,
@@ -63,8 +66,13 @@ export class TokenInterceptor implements HttpInterceptor {
         switchMap((token: { access: string }) => {
           this.isRefreshing = false;
           localStorage.setItem('accessToken', token.access);
+          this.store.dispatch(updateIsAuthenticate({ isAuthenticate: true }));
           this.refreshTokenSubject.next(token.access);
           return next.handle(this.addToken(request, token.access));
+        }),
+        catchError(() => {
+          this.store.dispatch(updateIsAuthenticate({ isAuthenticate: false }));
+          return next.handle(request);
         })
       );
     } else {

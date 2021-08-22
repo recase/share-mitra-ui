@@ -75,10 +75,14 @@ export class AuthEffects {
             localStorage.setItem('refreshToken', data.refresh);
             this.store.dispatch(updateApiLoadingAction({ flag: false }));
             this.store.dispatch(updateLoginErrorAction({ errorMsg: null }));
+            this.store.dispatch(updateIsAuthenticate({ isAuthenticate: true }));
             return loginSuccessAction();
           }),
           catchError((err) => {
             this.store.dispatch(updateApiLoadingAction({ flag: false }));
+            this.store.dispatch(
+              updateIsAuthenticate({ isAuthenticate: false })
+            );
             const errors = err.error[Object.keys(err.error)[0]];
             let errorMsg = '';
             if (Array.isArray(errors)) {
@@ -142,6 +146,9 @@ export class AuthEffects {
           }),
           catchError((err) => {
             // this.store.dispatch(updateApiLoadingAction({ flag: false }));
+            this.store.dispatch(
+              updateIsAuthenticate({ isAuthenticate: false })
+            );
             return of(updateApiLoadingAction({ flag: false }));
             // const errors = err.error[Object.keys(err.error)[0]];
             // let errorMsg = '';

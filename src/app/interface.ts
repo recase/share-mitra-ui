@@ -114,7 +114,7 @@ export interface loginResponse {
 }
 
 export interface AuthState {
-  isAuthenticated: boolean;
+  isAuthenticated: boolean | null;
   loggedInUser: User | null;
   apiLoading: boolean;
   loginErrorMessage: string | null;

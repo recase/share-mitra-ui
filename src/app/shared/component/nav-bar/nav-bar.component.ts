@@ -28,7 +28,9 @@ export class NavBarComponent implements OnInit, OnDestroy {
     this.authenticateSubscription = this.store
       .select(isAuthenticatedSelector)
       .subscribe((isAuthenticated) => {
-        this.isAuthenticated = isAuthenticated;
+        if (isAuthenticated !== null) {
+          this.isAuthenticated = isAuthenticated;
+        }
       });
     this.userSubscription = this.store
       .select(loggedInUserSelector)
