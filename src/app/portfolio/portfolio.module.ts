@@ -19,8 +19,7 @@ import { PortfolioReducer } from './store/portfolio.reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { PortfolioEffects } from './store/portfolio.effects';
 import { AddPrtfolioComponent } from './modals/add-prtfolio/add-prtfolio.component';
-import { EditTransactionComponent } from './modals/edit-transaction/edit-transaction.component';
-import { DeleteTransactionComponent } from './modals/delete-transaction/delete-transaction.component';
+import { DeleteComponent } from './modals/delete/delete.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -47,8 +46,7 @@ import { AddTransactionComponent } from './modals/add-transaction/add-transactio
     PortfolioModalComponent,
     TransactionCardComponent,
     AddPrtfolioComponent,
-    EditTransactionComponent,
-    DeleteTransactionComponent,
+    DeleteComponent,
     AddTransactionComponent,
   ],
   imports: [
