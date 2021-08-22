@@ -92,6 +92,10 @@ export class ApiService {
     return this.http.post<any>(this.portfolioUrl, portfolio);
   }
 
+  public deletePortfolio(portfolioId: number): Observable<any> {
+    return this.http.delete<any>(this.portfolioUrl + `${portfolioId}/`);
+  }
+
   public createPortfolioTransaction(transaction: Transaction): Observable<any> {
     return this.http.post<any>(this.portfolioTransactionUrl, transaction);
   }
