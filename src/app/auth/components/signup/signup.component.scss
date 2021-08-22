@@ -1,0 +1,70 @@
+@import "../../auth.component.scss";
+
+.main-container {
+  width: 60%;
+  margin: 24px auto;
+  .signup-container {
+    display: flex;
+    flex-direction: row-reverse;
+    .signup-section {
+      width: 40%;
+      padding-bottom: 24px;
+      height: auto;
+      .header {
+        margin: 18px 0;
+        padding-left: 24px;
+        font-size: $font-size-l;
+        font-weight: $bold;
+      }
+      .link-label {
+        color: $azure-radiance;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+
+      .link-container {
+        margin-top: 8px;
+      }
+      .action-container {
+        margin-top: 8px;
+      }
+    }
+    .side-background-section {
+      background-color: chartreuse;
+      height: auto;
+      width: 60%;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .main-container {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 858px) {
+  .main-container {
+    width: 90%;
+
+    .signup-container {
+      justify-content: center;
+      .signup-section {
+        width: 70%;
+      }
+
+      .side-background-section {
+        display: none;
+      }
+    }
+  }
+}
+@media screen and (max-width: 620px) {
+  .main-container {
+    .signup-container {
+      .signup-section {
+        width: 90%;
+      }
+    }
+  }
+}

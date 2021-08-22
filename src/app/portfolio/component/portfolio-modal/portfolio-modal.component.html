@@ -1,0 +1,43 @@
+<div class="portfolio-modal-container">
+  <div class="scrollable-container">
+    <div class="portfolio-summary-container">
+      <app-card [portfolio]="portfolio"></app-card>
+    </div>
+    <div class="portfolio-transactions-container">
+      <div *ngFor="let transaction of portfolio.transactions">
+        <app-transaction-card
+          [transaction]="transaction"
+          [portfolioId]="portfolio.id"
+          class="transaction-card"
+        ></app-transaction-card>
+      </div>
+    </div>
+  </div>
+  <div class="action-button">
+    <button
+      mat-fab
+      aria-label="back button"
+      class="back"
+      (click)="closeModal()"
+    >
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <button
+      mat-fab
+      aria-label="Add button"
+      class="add-transaction"
+      (click)="addTransaction()"
+    >
+      <mat-icon>add_circle_outline</mat-icon>
+    </button>
+
+    <button
+      mat-fab
+      aria-label="delete button"
+      class="delete"
+      (click)="deletePortfolio()"
+    >
+      <mat-icon>delete_forever</mat-icon>
+    </button>
+  </div>
+</div>

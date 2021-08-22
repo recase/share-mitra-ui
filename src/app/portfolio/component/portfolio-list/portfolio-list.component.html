@@ -1,0 +1,23 @@
+<div class="portfolio-list-container">
+  <div class="summary-container">
+    <app-summary [summaryData]="summary"></app-summary>
+  </div>
+  <div class="list-container">
+    <div class="portfolio-detail" *ngFor="let portfolio of portfolioData">
+      <app-card
+        [portfolio]="portfolio"
+        (click)="openPortfolioModal(portfolio)"
+      ></app-card>
+    </div>
+  </div>
+  <div class="add-action">
+    <button
+      mat-fab
+      aria-label="Add button"
+      class="add-stock"
+      (click)="openAddPortfolioModal()"
+    >
+      <mat-icon>add_circle_outline</mat-icon>
+    </button>
+  </div>
+</div>

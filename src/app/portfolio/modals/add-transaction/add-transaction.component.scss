@@ -1,0 +1,43 @@
+@import "../../../../styles.scss";
+
+.transaction-container {
+  min-height: 40vh;
+  max-height: 90vh;
+  overflow: auto;
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  .group-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    .form-fields {
+      width: 48%;
+    }
+  }
+}
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  overflow-y: scroll;
+  background: $scroll-bar-background;
+  box-shadow: inset 0 0 4px $scroll-bar-shadow;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $scroll-bar-fill;
+  border-radius: 2px;
+}
+
+@media screen and(max-width: 858px) {
+  .transaction-container {
+    .group-container {
+      display: block;
+      .form-fields {
+        width: 100%;
+      }
+    }
+  }
+}

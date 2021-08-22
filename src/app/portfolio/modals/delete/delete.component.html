@@ -1,0 +1,27 @@
+<div class="delete-container">
+  <div class="confirmation-container" *ngIf="!loading">
+    <div class="label">
+      {{ label }}
+    </div>
+    <div class="action-container">
+      <button mat-raised-button (click)="cancel()">Cancel</button>
+      <button mat-raised-button (click)="deleteClick()">Delete</button>
+    </div>
+  </div>
+  <div class="loading-container" *ngIf="loading">
+    <div class="lds-spinner">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+</div>

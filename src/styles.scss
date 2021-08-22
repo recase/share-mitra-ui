@@ -1,1 +1,47 @@
-/* You can add global styles to this file, and also import other style files */
+@import "./mixins.scss";
+@import "./variables.scss";
+
+body {
+  box-sizing: border-box;
+  background: $background-color;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+
+  .portfolio-modal,
+  .transaction-modal,
+  .portfolio-add-modal {
+    width: 40%;
+    max-height: 90vh;
+  }
+
+  .portfolio-modal {
+    .mat-dialog-container {
+      padding: 0 24px !important;
+    }
+  }
+
+  @media screen and(max-width:1200px) {
+    .portfolio-modal,
+    .transaction-modal,
+    .portfolio-add-modal {
+      width: 75vw;
+    }
+  }
+  @media screen and(max-width:858px) {
+    .portfolio-modal,
+    .transaction-modal,
+    .portfolio-add-modal {
+      max-width: 95vw !important;
+      width: 95vw;
+    }
+  }
+}

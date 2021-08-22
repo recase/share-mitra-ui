@@ -1,0 +1,48 @@
+@import "../../../../styles.scss";
+
+.portfolio-modal-container {
+  position: relative;
+  max-height: 90vh;
+  overflow: hidden;
+
+  .scrollable-container {
+    padding: 24px 4px 4px;
+    overflow: auto;
+    max-height: calc(90vh - 112px);
+
+    .portfolio-transactions-container {
+      .transaction-card:last-child {
+        margin-bottom: 44px;
+      }
+    }
+  }
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+    overflow-y: scroll;
+    background: $scroll-bar-background;
+    box-shadow: inset 0 0 4px $scroll-bar-shadow;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: $scroll-bar-fill;
+    border-radius: 2px;
+  }
+
+  .action-button {
+    position: sticky;
+    bottom: 8px;
+    left: 20px;
+    text-align: center;
+
+    .back {
+      position: absolute;
+      left: 4px;
+    }
+
+    .delete {
+      position: absolute;
+      right: 4px;
+    }
+  }
+}

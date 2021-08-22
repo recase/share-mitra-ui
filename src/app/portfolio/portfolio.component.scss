@@ -1,0 +1,20 @@
+@import "../../styles.scss";
+
+.portfolio-container {
+  width: 70%;
+  margin: 24px auto 0;
+  overflow: auto;
+  //   max-height: calc(a00vh - 84px);
+}
+
+@media screen and (max_width: 1200px) {
+  .portfolio-container {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 858px) {
+  .portfolio-container {
+    width: 95%;
+  }
+}

@@ -1,0 +1,79 @@
+@import "../../../../styles.scss";
+
+.sector-container {
+  height: calc(100vh - 118px);
+
+  .table-container {
+    max-height: calc(100vh - 126px);
+    width: 70%;
+    overflow: auto;
+    box-shadow: -1px 3px 9px 0px rgb(0 0 0 / 50%);
+    margin: 8px auto;
+
+    .sector-table {
+      width: 100%;
+      .header-row {
+        background: $background-color;
+
+        .header-label {
+          text-align: left;
+          border-bottom: 2px solid $table-border;
+          padding: 8px 6px;
+          border-right: 1px solid $table-border;
+        }
+
+        .header-label:last-child {
+          border-right: none;
+        }
+      }
+
+      .row-data {
+        background: $background-color;
+        .value {
+          border-right: 1px solid $table-border;
+          padding: 6px;
+        }
+        .value:last-child {
+          border-right: none;
+        }
+      }
+      .row-data:nth-child(2n + 1) {
+        background: $catskill-white;
+      }
+
+      .mat-column-name {
+        width: 300px;
+        min-width: 200px;
+      }
+      .mat-column-regulatorybody {
+        min-width: 300px;
+      }
+    }
+  }
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+    overflow-y: scroll;
+    background: $scroll-bar-background;
+    box-shadow: inset 0 0 4px $scroll-bar-shadow;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: $scroll-bar-fill;
+    border-radius: 2px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .sector-container {
+    .table-container {
+      width: 80%;
+    }
+  }
+}
+@media screen and (max-width: 858px) {
+  .sector-container {
+    .table-container {
+      width: 98%;
+    }
+  }
+}

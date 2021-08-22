@@ -1,0 +1,200 @@
+<div class="transaction-card">
+  <div
+    class="collapse-container"
+    *ngIf="collapseCard"
+    (click)="toggleCollapse()"
+  >
+    <div
+      *ngIf="
+        transaction.transactionType === transactionType.IPO ||
+        transaction.transactionType === transactionType.FPO ||
+        transaction.transactionType === transactionType.Right ||
+        transaction.transactionType === transactionType.BUY ||
+        transaction.transactionType === transactionType.SELL ||
+        transaction.transactionType === transactionType.Auction
+      "
+    >
+      <div class="label">
+        <span class="units">{{ transaction.units | unitTransform }}, </span>
+        <span class="transaction-type">{{ transaction.transactionType }} </span>
+        at
+        <span class="cost">
+          {{ transaction.costPerUnit | costTransform }}
+        </span>
+        on<span class="date">
+          {{ transaction.transactionDate | date: "yyyy/MM/dd" }}.</span
+        >
+      </div>
+    </div>
+    <div *ngIf="transaction.transactionType === transactionType.Bonus">
+      <div class="label">
+        <span class="units">{{ transaction.units | unitTransform }}, </span>
+        <span class="transaction-type">{{ transaction.transactionType }} </span>
+        on<span class="date">
+          {{ transaction.transactionDate | date: "yyyy/MM/dd" }}.</span
+        >
+      </div>
+    </div>
+    <div *ngIf="transaction.transactionType === transactionType.Dividend">
+      <div class="label">
+        <span class="units"
+          >{{ transaction.bonusAmount | costTransform }},
+        </span>
+        <span class="transaction-type">{{ transaction.transactionType }} </span>
+        on<span class="date">
+          {{ transaction.transactionDate | date: "yyyy/MM/dd" }}.</span
+        >
+      </div>
+    </div>
+    <div class="action-container">
+      <mat-icon class="action-icon" (click)="editTransaction()">edit</mat-icon>
+      <mat-icon class="action-icon" (click)="deleteTransaction()"
+        >delete_forever</mat-icon
+      >
+    </div>
+  </div>
+  <div
+    class="expand-container"
+    (click)="toggleCollapse()"
+    *ngIf="!collapseCard"
+  >
+    <div class="date">
+      {{ transaction.transactionDate | date: "yyyy/MM/dd" }}
+    </div>
+
+    <div
+      *ngIf="
+        transaction.transactionType === transactionType.IPO ||
+        transaction.transactionType === transactionType.FPO ||
+        transaction.transactionType === transactionType.Right ||
+        transaction.transactionType === transactionType.BUY ||
+        transaction.transactionType === transactionType.Auction
+      "
+      class="detail-container"
+    >
+      <div class="fields">
+        <div class="label">Units</div>
+        <div class="value">{{ transaction.units | number: "1.1-1" }}</div>
+      </div>
+      <div class="fields">
+        <div class="label">Transaction Type</div>
+        <div class="value">{{ transaction.transactionType }}</div>
+      </div>
+      <div class="fields">
+        <div class="label">Cost per unit</div>
+        <div class="value">{{ transaction.costPerUnit | number: "1.2-2" }}</div>
+      </div>
+      <div class="fields" *ngIf="transaction.investment">
+        <div class="label">Total cost</div>
+        <div class="value">
+          {{ transaction.investment | number: "1.2-2" }}
+        </div>
+      </div>
+      <div class="fields" *ngIf="transaction.casbaCharge">
+        <div class="label">CASBA charge</div>
+        <div class="value">{{ transaction.casbaCharge | number: "1.2-2" }}</div>
+      </div>
+      <div class="fields" *ngIf="transaction.auctionCharge">
+        <div class="label">Auction charge</div>
+        <div class="value">
+          {{ transaction.auctionCharge | number: "1.2-2" }}
+        </div>
+      </div>
+      <div class="fields" *ngIf="transaction.dpCharge">
+        <div class="label">DP charge</div>
+        <div class="value">{{ transaction.dpCharge | number: "1.2-2" }}</div>
+      </div>
+      <div class="fields" *ngIf="transaction.sebonCharge">
+        <div class="label">SEBON charge</div>
+        <div class="value">{{ transaction.sebonCharge | number: "1.2-2" }}</div>
+      </div>
+      <div class="fields" *ngIf="transaction.brokerCharge">
+        <div class="label">Broker charge</div>
+        <div class="value">
+          {{ transaction.brokerCharge | number: "1.2-2" }}
+        </div>
+      </div>
+      <div class="fields" *ngIf="transaction.totalInvestment">
+        <div class="label">Total investment</div>
+        <div class="value">
+          {{ transaction.totalInvestment | number: "1.2-2" }}
+        </div>
+      </div>
+    </div>
+    <div
+      *ngIf="transaction.transactionType === transactionType.SELL"
+      class="detail-container"
+    >
+      <div class="fields">
+        <div class="label">Units</div>
+        <div class="value">{{ transaction.units | number: "1.1-1" }}</div>
+      </div>
+      <div class="fields">
+        <div class="label">Transaction Type</div>
+        <div class="value">{{ transaction.transactionType }}</div>
+      </div>
+      <div class="fields">
+        <div class="label">Price per unit</div>
+        <div class="value">{{ transaction.costPerUnit | number: "1.2-2" }}</div>
+      </div>
+      <div class="fields" *ngIf="transaction.dpCharge">
+        <div class="label">DP charge</div>
+        <div class="value">{{ transaction.dpCharge | number: "1.2-2" }}</div>
+      </div>
+      <div class="fields" *ngIf="transaction.sebonCharge">
+        <div class="label">SEBON charge</div>
+        <div class="value">{{ transaction.sebonCharge | number: "1.2-2" }}</div>
+      </div>
+      <div class="fields" *ngIf="transaction.brokerCharge">
+        <div class="label">Broker charge</div>
+        <div class="value">
+          {{ transaction.brokerCharge | number: "1.2-2" }}
+        </div>
+      </div>
+      <div class="fields" *ngIf="transaction.soldAmount">
+        <div class="label">sold amount</div>
+        <div class="value">
+          {{ transaction.soldAmount | number: "1.2-2" }}
+        </div>
+      </div>
+      <div class="fields" *ngIf="transaction.receivableAmount">
+        <div class="label">Receivable amount</div>
+        <div class="value">
+          {{ transaction.receivableAmount | number: "1.2-2" }}
+        </div>
+      </div>
+    </div>
+    <div
+      *ngIf="transaction.transactionType === transactionType.Bonus"
+      class="detail-container"
+    >
+      <div class="fields">
+        <div class="label">Units</div>
+        <div class="value">{{ transaction.units | number: "1.1-1" }}</div>
+      </div>
+      <div class="fields">
+        <div class="label">Transaction Type</div>
+        <div class="value">{{ transaction.transactionType }}</div>
+      </div>
+    </div>
+    <div
+      *ngIf="transaction.transactionType === transactionType.Dividend"
+      class="detail-container"
+    >
+      <div class="fields">
+        <div class="label">Dividend amount</div>
+        <div class="value">{{ transaction.bonusAmount | number: "1.2-2" }}</div>
+      </div>
+      <div class="fields">
+        <div class="label">Transaction Type</div>
+        <div class="value">{{ transaction.transactionType }}</div>
+      </div>
+    </div>
+    <div class="action-container">
+      <mat-icon class="action-icon" (click)="editTransaction()">edit</mat-icon>
+      <mat-icon class="action-icon" (click)="deleteTransaction()"
+        >delete_forever</mat-icon
+      >
+    </div>
+  </div>
+</div>

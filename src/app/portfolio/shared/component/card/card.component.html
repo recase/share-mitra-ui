@@ -1,0 +1,121 @@
+<div
+  class="card-container"
+  [ngClass]="{
+    'loss-container': portfolio.change && portfolio.change < 0,
+    'profit-container': portfolio.change && portfolio.change > 0
+  }"
+>
+  <div class="header">
+    <div class="symbol">{{ portfolio.company?.symbol }}</div>
+    <div class="ltp">
+      <div class="label">LTP</div>
+      <div
+        class="value"
+        [ngClass]="{
+          'profit-value': portfolio && portfolio.change && portfolio.change > 0,
+          'loss-value': portfolio && portfolio.change && portfolio.change < 0
+        }"
+      >
+        {{ portfolio.ltp | number: "1.2-2" }} ({{
+          portfolio.change | number: "1.2-2"
+        }}%)
+      </div>
+    </div>
+  </div>
+  <div class="sub-header">
+    <div class="name">{{ portfolio.company?.name }}</div>
+  </div>
+  <div class="detail-container">
+    <div class="fields">
+      <div class="label">Units</div>
+      <div class="value">{{ portfolio.totalUnits | number: "1.2-2" }}</div>
+    </div>
+    <div class="fields">
+      <div class="label">Investment</div>
+      <div class="value">{{ portfolio.investment | number: "1.2-2" }}</div>
+    </div>
+    <div class="fields">
+      <div class="label">Total investment</div>
+      <div class="value">{{ portfolio.totalInvestment | number: "1.2-2" }}</div>
+    </div>
+    <div class="fields" *ngIf="portfolio.totalSoldAmount">
+      <div class="label">Sold amount</div>
+      <div class="value">{{ portfolio.totalSoldAmount | number: "1.2-2" }}</div>
+    </div>
+    <div class="fields" *ngIf="portfolio.totalReceivedAmount">
+      <div class="label">Receivable amount</div>
+      <div class="value">
+        {{ portfolio.totalReceivedAmount | number: "1.2-2" }}
+      </div>
+    </div>
+    <div class="fields" *ngIf="portfolio.totalDividendAmount">
+      <div class="label">Dividend amount</div>
+      <div class="value">
+        {{ portfolio.totalDividendAmount | number: "1.2-2" }}
+      </div>
+    </div>
+    <div
+      class="fields"
+      *ngIf="portfolio.currentValue && portfolio.overAllProfitLoss"
+    >
+      <div class="label">Current value</div>
+      <div
+        class="value"
+        [ngClass]="{
+          'profit-value': portfolio.overAllProfitLoss > 0,
+          'loss-value': portfolio.overAllProfitLoss < 0
+        }"
+      >
+        {{ portfolio.currentValue | number: "1.2-2" }}
+      </div>
+    </div>
+    <div class="fields" *ngIf="portfolio.overAllProfitLoss">
+      <div class="label">Overall profit</div>
+      <div
+        class="value"
+        [ngClass]="{
+          'profit-value': portfolio.overAllProfitLoss > 0,
+          'loss-value': portfolio.overAllProfitLoss < 0
+        }"
+      >
+        {{ portfolio.overAllProfitLoss | number: "1.2-2" }}
+      </div>
+    </div>
+    <div class="fields" *ngIf="!portfolio.overAllProfitLoss">
+      <div class="label">Overall profit</div>
+      <div class="value">0.00</div>
+    </div>
+    <div class="fields" *ngIf="portfolio.overAllProfitLossPercentage">
+      <div class="label">Profit percentage</div>
+      <div
+        class="value"
+        [ngClass]="{
+          'profit-value': portfolio.overAllProfitLossPercentage > 0,
+          'loss-value': portfolio.overAllProfitLossPercentage < 0
+        }"
+      >
+        {{ portfolio.overAllProfitLossPercentage | number: "1.2-2" }}%
+      </div>
+    </div>
+    <div class="fields" *ngIf="!portfolio.overAllProfitLossPercentage">
+      <div class="label">Profit percentage</div>
+      <div class="value">0.00%</div>
+    </div>
+    <div class="fields" *ngIf="portfolio.todaysProfitLoss">
+      <div class="label">Today's profit</div>
+      <div
+        class="value"
+        [ngClass]="{
+          'profit-value': portfolio.todaysProfitLoss > 0,
+          'loss-value': portfolio.todaysProfitLoss < 0
+        }"
+      >
+        {{ portfolio.todaysProfitLoss | number: "1.2-2" }}
+      </div>
+    </div>
+    <div class="fields" *ngIf="!portfolio.todaysProfitLoss">
+      <div class="label">Today's profit</div>
+      <div class="value">0.00</div>
+    </div>
+  </div>
+</div>

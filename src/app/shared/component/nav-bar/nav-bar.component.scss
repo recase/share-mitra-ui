@@ -1,0 +1,151 @@
+@import "../../../../styles.scss";
+
+@keyframes blink {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+nav {
+  box-sizing: border-box;
+  height: 60px;
+  width: 70%;
+  margin: 0 auto;
+  top: 0;
+  position: fixed;
+  left: 50%;
+  transform: translatex(-50%);
+  top: 0;
+  z-index: 100;
+  background: #f6fcffd1;
+  border-bottom: 1px solid gray;
+
+  .logo {
+    margin-left: 60px;
+    height: 100%;
+    display: inline-block;
+    .icon {
+      height: 60px;
+    }
+
+    .logo-icon {
+      display: block;
+    }
+    .logo-icon-light {
+      display: none;
+    }
+  }
+
+  ul {
+    float: right;
+    list-style: none;
+    padding: 0;
+    margin: 0 60px 0 0;
+    line-height: 60px;
+    z-index: 100;
+
+    li {
+      display: inline-block;
+
+      a {
+        text-decoration: none;
+        margin: 0 4px;
+        text-transform: uppercase;
+        padding: 4px;
+        border-radius: 4px;
+        color: $black;
+        position: relative;
+      }
+      a:hover {
+        text-decoration: underline;
+        transition: 0.5s;
+      }
+      .active {
+        // background: #1b9bff;
+        // border: 1px solid #1b9bff;
+        transform: scale(1.05);
+        font-weight: $semi-blod;
+      }
+
+      .live::before {
+        content: "";
+        height: 6px;
+        width: 6px;
+        border-radius: 50%;
+        background: $red;
+        position: absolute;
+        top: 0;
+        right: -4px;
+        animation: blink 1s ease-in-out;
+        animation-iteration-count: infinite;
+      }
+    }
+  }
+
+  .menu-icon {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 30px;
+    width: 30px;
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  nav {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 858px) {
+  nav {
+    background: $azure-radiance;
+    width: 100vw;
+    color: $white;
+
+    .logo {
+      .logo-icon {
+        display: none;
+      }
+      .logo-icon-light {
+        display: block;
+      }
+    }
+    .menu-icon {
+      display: block;
+    }
+
+    ul {
+      position: fixed;
+      top: 60px;
+      height: 100vh;
+      width: 100vw;
+      right: -100vw;
+      background: $pickled-bluewood;
+      text-align: center;
+      transition: all 0.5s;
+      margin: 0;
+      z-index: 1000;
+      li {
+        display: block;
+        a {
+          color: $white;
+        }
+
+        .active,
+        a:hover {
+          background: none;
+          color: $azure-radiance;
+        }
+      }
+    }
+    .show-nav {
+      right: 0;
+    }
+  }
+}

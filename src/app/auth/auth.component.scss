@@ -1,0 +1,91 @@
+@import "../../styles.scss";
+
+.form-section {
+  margin-top: 24px;
+  padding: 0 24px;
+  width: 30%;
+  .field-section {
+    margin-bottom: 24px;
+    width: 100%;
+    position: relative;
+    // display: flex;
+    .label {
+      text-align: left;
+      font-size: $font-size-b;
+    }
+
+    .value {
+      height: 22px;
+      width: -webkit-fill-available;
+    }
+
+    .error-container {
+      position: absolute;
+      top: -4px;
+      right: 0;
+      .error {
+        padding: 0 8px;
+        background-color: $white;
+        border: 1px solid $red;
+        border-radius: 8px;
+        font-size: $font-size-xs;
+        line-height: $font-size-s;
+        height: 14px;
+      }
+
+      .error::before {
+        content: "!";
+        color: $red;
+        font-size: 12px;
+        margin-right: 4px;
+      }
+    }
+
+    .error-container::before {
+      content: "";
+      height: 6px;
+      width: 6px;
+      border: 1px solid $red;
+      border-left: none;
+      border-top: none;
+      background-color: #fff;
+      position: absolute;
+      bottom: -4px;
+      transform: rotate(45deg);
+      left: 50%;
+    }
+  }
+
+  .action-container {
+    .btn {
+      height: 28px;
+      border-radius: 4px;
+      font-size: $font-size-m;
+      line-height: 20px;
+      cursor: pointer;
+      box-shadow: 1px 2px 4px 1px rgb(0 0 0 / 50%);
+    }
+
+    .action-btn {
+      border: 1px solid $blue;
+      background-color: $azure-radiance;
+      color: #eaeaed;
+      width: 100%;
+      transition: all 0.5s;
+    }
+
+    .action-btn:hover {
+      background-color: #1c69c2;
+    }
+  }
+
+  .response-error {
+    color: $red;
+    white-space: pre-wrap;
+  }
+  .response-error::before {
+    content: "*";
+    color: $red;
+    margin-right: 4px;
+  }
+}

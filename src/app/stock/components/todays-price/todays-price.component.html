@@ -1,0 +1,97 @@
+<div class="price-container">
+  <div class="last-update-date-label">
+    As of: {{ priceList.date | date: "yyyy-MM-dd" }}
+  </div>
+  <div class="price-table-container">
+    <table
+      mat-table
+      [dataSource]="priceList.stocksPrice"
+      class="mat-elevation-z8 price-table"
+    >
+      <!-- symbol Column -->
+      <ng-container matColumnDef="symbol" sticky="true">
+        <th mat-header-cell *matHeaderCellDef class="header-label">Symbol</th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          class="value"
+          (click)="test(element)"
+        >
+          {{ element.symbol }}
+        </td>
+      </ng-container>
+
+      <!-- ltp Column -->
+      <ng-container matColumnDef="close">
+        <th mat-header-cell *matHeaderCellDef class="header-label">Close</th>
+        <td mat-cell *matCellDef="let element" class="value">
+          {{ element.closePrice }}
+        </td>
+      </ng-container>
+
+      <!-- p close Column -->
+      <ng-container matColumnDef="pclose">
+        <th mat-header-cell *matHeaderCellDef class="header-label">P Close</th>
+        <td mat-cell *matCellDef="let element" class="value">
+          {{ element.previousClosePrice }}
+        </td>
+      </ng-container>
+
+      <!-- chnage Column -->
+      <ng-container matColumnDef="change">
+        <th mat-header-cell *matHeaderCellDef class="header-label">Change%</th>
+        <td mat-cell *matCellDef="let element" class="value">
+          {{ element.percentageChange + "%" }}
+        </td>
+      </ng-container>
+
+      <!-- open Column -->
+      <ng-container matColumnDef="open">
+        <th mat-header-cell *matHeaderCellDef class="header-label">Open</th>
+        <td mat-cell *matCellDef="let element" class="value">
+          {{ element.openPrice }}
+        </td>
+      </ng-container>
+
+      <!-- high price -->
+      <ng-container matColumnDef="high">
+        <th mat-header-cell *matHeaderCellDef class="header-label">High</th>
+        <td mat-cell *matCellDef="let element" class="value">
+          {{ element.highPrice }}
+        </td>
+      </ng-container>
+
+      <!-- low price -->
+      <ng-container matColumnDef="low">
+        <th mat-header-cell *matHeaderCellDef class="header-label">Low</th>
+        <td mat-cell *matCellDef="let element" class="value">
+          {{ element.lowPrice }}
+        </td>
+      </ng-container>
+
+      <!-- volume -->
+      <ng-container matColumnDef="volume">
+        <th mat-header-cell *matHeaderCellDef class="header-label">Volume</th>
+        <td mat-cell *matCellDef="let element" class="value">
+          {{ element.totalVolume }}
+        </td>
+      </ng-container>
+
+      <tr
+        mat-header-row
+        *matHeaderRowDef="displayedColumns; sticky: true"
+        class="header-row"
+      ></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        [ngClass]="{
+          high: row.percentageChange > 0,
+          low: row.percentageChange < 0,
+          unchange: row.percentageChange == 0
+        }"
+        class="row-data"
+      ></tr>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,189 @@
+@import "../../../../styles.scss";
+
+.live-container {
+  height: calc(100vh - 126px);
+
+  .date-contianer {
+    height: 2opx;
+    margin-bottom: 10px;
+  }
+
+  .table-container {
+    max-height: calc(100vh - 156px);
+    width: 98%;
+    overflow: auto;
+    box-shadow: -1px 3px 9px 0px rgb(0 0 0 / 50%);
+    margin: 8px auto;
+
+    .live-table {
+      border-spacing: unset;
+      width: 100%;
+
+      .header-row {
+        background: $background-color;
+
+        .header-label {
+          text-align: left;
+          border-bottom: 2px solid $table-border;
+          padding: 8px 6px;
+          border-right: 1px solid $table-border;
+        }
+
+        .header-label:last-child {
+          border-right: none;
+        }
+      }
+
+      .row-data {
+        background: $background-color;
+        .value {
+          border-right: 1px solid $table-border;
+          padding: 6px;
+        }
+        .value:last-child {
+          border-right: none;
+        }
+      }
+
+      .row-data {
+        .mat-column-symbol {
+          padding-left: 24px !important;
+        }
+        .mat-column-symbol:hover {
+          text-decoration: underline;
+        }
+      }
+      .mat-column-symbol {
+        min-width: 100px;
+        width: 150px;
+        text-align: left;
+      }
+      .mat-column-ltp {
+        min-width: 120px;
+        width: 150px;
+        text-align: right;
+      }
+
+      .mat-column-change {
+        min-width: 60px;
+        width: 60px;
+        text-align: right;
+      }
+      .mat-column-pclose {
+        min-width: 120px;
+        width: 150px;
+        text-align: right;
+      }
+      .mat-column-open {
+        min-width: 120px;
+        width: 150px;
+        text-align: right;
+      }
+      .mat-column-low {
+        min-width: 120px;
+        width: 150px;
+        text-align: right;
+      }
+      .mat-column-high {
+        min-width: 120px;
+        width: 150px;
+        text-align: right;
+      }
+      .mat-column-ltv {
+        min-width: 50px;
+        text-align: right;
+        width: 60px;
+      }
+      .mat-column-ltt {
+        min-width: 130px;
+        text-align: right;
+        width: 150px;
+      }
+      .mat-column-tv {
+        min-width: 130px;
+        width: 150px;
+        text-align: right;
+      }
+
+      .high {
+        background: #089308 !important;
+        .value {
+          color: #dfdfdf;
+        }
+        .mat-column-symbol::before {
+          content: "";
+          width: 8px;
+          height: 8px;
+          border: 2px solid white;
+          position: absolute;
+          left: 8px;
+          box-sizing: border-box;
+          border-bottom: none;
+          border-right: none;
+          top: 50%;
+          transform: translateY(-50%) rotate(45deg);
+        }
+      }
+      .low {
+        background: #ff4343 !important;
+
+        .value {
+          color: #dfdfdf;
+        }
+        .mat-column-symbol::before {
+          content: "";
+          width: 8px;
+          height: 8px;
+          border: 2px solid white;
+          position: absolute;
+          left: 8px;
+          box-sizing: border-box;
+          border-top: none;
+          border-left: none;
+          top: 50%;
+          transform: translateY(-50%) rotate(45deg);
+        }
+      }
+      .unchange {
+        .mat-column-symbol::before {
+          content: "";
+          width: 8px;
+          height: 8px;
+          border: 2px solid #837878;
+          position: absolute;
+          left: 6px;
+          box-sizing: border-box;
+          border-top: none;
+          border-right: none;
+          top: 50%;
+          transform: translateY(-50%) rotate(45deg);
+        }
+        .mat-column-symbol::after {
+          content: "";
+          width: 8px;
+          height: 8px;
+          border: 2px solid #837878;
+          position: absolute;
+          left: 10px;
+          box-sizing: border-box;
+          border-bottom: none;
+          border-left: none;
+          top: 50%;
+          transform: translateY(-50%) rotate(45deg);
+        }
+      }
+    }
+  }
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+    overflow-y: scroll;
+    background: $scroll-bar-background;
+    box-shadow: inset 0 0 4px $scroll-bar-shadow;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: $scroll-bar-fill;
+    border-radius: 2px;
+  }
+}
