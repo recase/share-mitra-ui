@@ -1,10 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Store } from '@ngrx/store';
 import { TransactionType } from 'src/app/enums';
-import { PortfolioState, Transaction } from 'src/app/interface';
+import { Transaction } from 'src/app/interface';
 import { AddTransactionComponent } from 'src/app/portfolio/modals/add-transaction/add-transaction.component';
-import { deleteTransaction } from 'src/app/portfolio/store/portfolio.actions';
+import { DeleteComponent } from 'src/app/portfolio/modals/delete/delete.component';
 
 @Component({
   selector: 'app-transaction-card',
@@ -16,10 +15,7 @@ export class TransactionCardComponent implements OnInit {
   @Input() public portfolioId: number | undefined;
   public collapseCard: boolean = true;
 
-  constructor(
-    private dialog: MatDialog,
-    private store: Store<PortfolioState>
-  ) {}
+  constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {}
 
@@ -42,9 +38,12 @@ export class TransactionCardComponent implements OnInit {
   public deleteTransaction(): void {
     event?.stopPropagation();
     if (this.transaction && this.transaction.id) {
-      this.store.dispatch(
-        deleteTransaction({ transactionId: this.transaction.id })
-      );
+      this.dialog.open(DeleteComponent, {
+        data: {
+          type: 'transaction',
+          transactionId: this.transaction.id,
+        },
+      });
     }
   }
 
