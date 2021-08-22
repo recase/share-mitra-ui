@@ -9,6 +9,7 @@ import {
   createPortfolio,
   createPortfolioSuccess,
   createTransaction,
+  deletePortfolio,
   deleteTransaction,
   retrieveCompanyList,
   retrievePortfolioData,
@@ -124,12 +125,31 @@ export class PortfolioEffects {
       })
     );
   });
+
   $deleteTransaction = createEffect(() => {
     return this.action$.pipe(
       ofType(deleteTransaction),
       mergeMap((action) => {
         this.store.dispatch(updateTransactionApiLoading({ flag: true }));
         return this.api.deletePortfolioTransaction(action.transactionId).pipe(
+          map(() => {
+            this.store.dispatch(updateTransactionApiLoading({ flag: false }));
+            return transactionSuccess();
+          }),
+          catchError(() => {
+            return of(updateTransactionApiLoading({ flag: false }));
+          })
+        );
+      })
+    );
+  });
+
+  $deletePortfolio = createEffect(() => {
+    return this.action$.pipe(
+      ofType(deletePortfolio),
+      mergeMap((action) => {
+        this.store.dispatch(updateTransactionApiLoading({ flag: true }));
+        return this.api.deletePortfolio(action.portfolioId).pipe(
           map(() => {
             this.store.dispatch(updateTransactionApiLoading({ flag: false }));
             return transactionSuccess();

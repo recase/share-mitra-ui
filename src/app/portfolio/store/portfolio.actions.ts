@@ -68,3 +68,8 @@ export const updateTransactionApiLoading = createAction(
   '[portfolio] updateTransactionApiLoading',
   props<{ flag: boolean }>()
 );
+
+export const deletePortfolio = createAction(
+  '[portfolio] deletePortfolio',
+  props<{ portfolioId: number }>()
+);
