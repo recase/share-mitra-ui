@@ -45,3 +45,7 @@ export const updateIsAuthenticate = createAction(
   '[auth] isAuthenticated',
   props<{ isAuthenticate: boolean }>()
 );
+export const updateApiSuccess = createAction(
+  '[auth] updateApiSuccess',
+  props<{ flag: boolean }>()
+);

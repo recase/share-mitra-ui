@@ -32,3 +32,7 @@ export const isAuthenticatedSelector = createSelector(
     return state.isAuthenticated;
   }
 );
+
+export const apiSuccessSelector = createSelector(authSelectors, (state) => {
+  return state.apiSuccess;
+});

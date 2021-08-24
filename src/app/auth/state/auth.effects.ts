@@ -16,6 +16,7 @@ import {
   signupFailedAction,
   signupSuccessAction,
   updateApiLoadingAction,
+  updateApiSuccess,
   updateIsAuthenticate,
   updateLoginErrorAction,
   updateSignupErrorAction,
@@ -38,13 +39,16 @@ export class AuthEffects {
       ofType(signupAction),
       mergeMap((action) => {
         this.store.dispatch(updateApiLoadingAction({ flag: true }));
+        this.store.dispatch(updateApiSuccess({ flag: false }));
         return this.api.signup(action.newUser).pipe(
           map(() => {
             this.store.dispatch(updateApiLoadingAction({ flag: false }));
             this.store.dispatch(updateSignupErrorAction({ errorMsg: null }));
-            return signupSuccessAction();
+            // this.store.dispatch(updateApiSuccess({ flag: true }));
+            return updateApiSuccess({ flag: true });
           }),
           catchError((err) => {
+            this.store.dispatch(updateApiSuccess({ flag: false }));
             this.store.dispatch(updateApiLoadingAction({ flag: false }));
             const errors = err.error[Object.keys(err.error)[0]];
             let errorMsg = '';
@@ -184,7 +188,7 @@ export class AuthEffects {
   $loginPageRedirect = createEffect(
     () => {
       return this.actions$.pipe(
-        ofType(...[signupSuccessAction, logoutSuccessAction]),
+        ofType(...[logoutSuccessAction]),
         tap(() => {
           this.router.navigate(['auth', 'login']);
         })
