@@ -10,7 +10,10 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { AuthState, NewUser } from 'src/app/interface';
 import { signupAction } from '../../state/auth.actions';
-import { signupErrorMsgSelector } from '../../state/auth.selectors';
+import {
+  apiSuccessSelector,
+  signupErrorMsgSelector,
+} from '../../state/auth.selectors';
 
 @Component({
   selector: 'app-signup',
@@ -23,7 +26,9 @@ export class SignupComponent implements OnInit, OnDestroy {
   public passwordMatchError = false;
   public errors!: string | null;
   public reponseError = false;
+  public signupSuccessFlag = false;
   private apiErrorSubscription!: Subscription;
+  private apiSuccessSubscription!: Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -37,6 +42,11 @@ export class SignupComponent implements OnInit, OnDestroy {
       .select(signupErrorMsgSelector)
       .subscribe((error) => {
         this.errors = error;
+      });
+    this.apiSuccessSubscription = this.store
+      .select(apiSuccessSelector)
+      .subscribe((data) => {
+        this.signupSuccessFlag = data;
       });
   }
 
@@ -86,12 +96,16 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   public navigateToLogin(): void {
+    this.signupSuccessFlag = false;
     this.router.navigate(['auth', 'login']);
   }
 
   ngOnDestroy(): void {
     if (this.apiErrorSubscription) {
       this.apiErrorSubscription.unsubscribe();
+    }
+    if (this.apiSuccessSubscription) {
+      this.apiSuccessSubscription.unsubscribe();
     }
   }
 }

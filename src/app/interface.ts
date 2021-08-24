@@ -120,6 +120,7 @@ export interface AuthState {
   loginErrorMessage: string | null;
   signupErrorMessage: string | null;
   userDetailErrorMessage: string | null;
+  apiSuccess: boolean;
 }
 
 export interface TransactionTypeData {

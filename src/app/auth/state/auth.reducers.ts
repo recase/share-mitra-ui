@@ -4,6 +4,7 @@ import {
   logoutSuccessAction,
   resetLoggedInUser,
   updateApiLoadingAction,
+  updateApiSuccess,
   updateIsAuthenticate,
   updateLoginErrorAction,
   updateSignupErrorAction,
@@ -60,6 +61,12 @@ const _authReducer = createReducer(
     return {
       ...state,
       isAuthenticated: action.isAuthenticate,
+    };
+  }),
+  on(updateApiSuccess, (state, action) => {
+    return {
+      ...state,
+      apiSuccess: action.flag,
     };
   })
 );

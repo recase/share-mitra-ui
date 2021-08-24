@@ -36,6 +36,7 @@ export class TokenInterceptor implements HttpInterceptor {
           error.status === 401 &&
           this.api.getRefreshToken()
         ) {
+          this.store.dispatch(updateIsAuthenticate({ isAuthenticate: false }));
           return this.handle401Error(request, next);
         } else {
           return throwError(error);

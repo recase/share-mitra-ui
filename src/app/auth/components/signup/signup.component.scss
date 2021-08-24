@@ -35,6 +35,21 @@
       width: 60%;
     }
   }
+
+  .success-container {
+    padding: 48px;
+
+    .title {
+      font-size: $font-size-xl;
+      font-weight: $bold;
+      margin-bottom: 24px;
+    }
+    .link {
+      color: blue;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
 }
 
 @media screen and (max-width: 1200px) {
