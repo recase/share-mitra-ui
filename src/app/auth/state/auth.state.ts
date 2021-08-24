@@ -7,4 +7,5 @@ export const authState: AuthState = {
   loginErrorMessage: null,
   signupErrorMessage: null,
   userDetailErrorMessage: null,
+  apiSuccess: false,
 };
