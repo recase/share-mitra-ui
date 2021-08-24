@@ -1,5 +1,5 @@
 <div class="main-container">
-  <div class="signup-container">
+  <div class="signup-container" *ngIf="!signupSuccessFlag">
     <div class="form-section signup-section">
       <div class="header">Signup</div>
       <div class="response-error" *ngIf="reponseError && errors">
@@ -117,5 +117,14 @@
       </div>
     </div>
     <div class="side-background-section"></div>
+  </div>
+  <div class="success-container" *ngIf="signupSuccessFlag">
+    <div class="title">Signup completed!</div>
+    <div class="description">
+      Please check your registered email to activate your account.
+      <div>Thank you, Share Mitra</div>
+      <span class="link" (click)="navigateToLogin()">Click here</span> to
+      continue login.
+    </div>
   </div>
 </div>
