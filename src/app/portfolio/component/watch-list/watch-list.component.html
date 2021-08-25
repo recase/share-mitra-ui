@@ -1,0 +1,25 @@
+<div class="card-list-container watchlist-container">
+  <div class="list-container">
+    <div class="card" *ngFor="let watchStock of watchList">
+      <app-simple-card
+        [symbol]="watchStock.symbol"
+        [name]="watchStock.companyName"
+        [notes]="watchStock.notes"
+        [watchlist]="true"
+        (deleteEvent)="deleteWatchList(watchStock.id)"
+        (editEvent)="editWatchList(watchStock.id)"
+      ></app-simple-card>
+    </div>
+  </div>
+
+  <div class="add-container">
+    <button
+      mat-fab
+      aria-label="Add button"
+      class="add-button"
+      (click)="addWatchList()"
+    >
+      <mat-icon>add_circle_outline</mat-icon>
+    </button>
+  </div>
+</div>
