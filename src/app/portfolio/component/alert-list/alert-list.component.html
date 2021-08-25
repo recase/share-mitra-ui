@@ -1,0 +1,29 @@
+<div class="card-list-container alert-container">
+  <div class="list-container">
+    <div class="card" *ngFor="let alert of alertList">
+      <app-simple-card
+        [symbol]="alert.symbol"
+        [name]="alert.companyName"
+        [notes]="alert.notes"
+        [exactPrice]="alert.exactPrice"
+        [minPrice]="alert.minPrice"
+        [maxPrice]="alert.maxPrice"
+        [enableNotification]="alert.enableNotification"
+        (editEvent)="editAlert(alert.id)"
+        (deleteEvent)="deleteAlert(alert.id)"
+        (notificationEvent)="toggleNofification($event, alert.id)"
+      ></app-simple-card>
+    </div>
+  </div>
+
+  <div class="add-container">
+    <button
+      mat-fab
+      aria-label="Add button"
+      class="add-button"
+      (click)="addAlert()"
+    >
+      <mat-icon>add_circle_outline</mat-icon>
+    </button>
+  </div>
+</div>
