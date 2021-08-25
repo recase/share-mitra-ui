@@ -7,6 +7,9 @@ import { LiveComponent } from './components/live/live.component';
 import { MatTableModule } from '@angular/material/table';
 import { EffectsModule } from '@ngrx/effects';
 import { LivePriceEffect } from './state/live.effects';
+import { StoreModule } from '@ngrx/store';
+import { LIVE_PRICE_STATE } from './state/live.selectors';
+import { liveReducer } from './state/live.reducers';
 
 @NgModule({
   declarations: [LiveStockComponent, LiveComponent],
@@ -15,6 +18,7 @@ import { LivePriceEffect } from './state/live.effects';
     LiveStockRoutingModule,
     MatTableModule,
     EffectsModule.forFeature([LivePriceEffect]),
+    StoreModule.forFeature(LIVE_PRICE_STATE, liveReducer),
   ],
 })
 export class LiveStockModule {}

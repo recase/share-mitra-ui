@@ -12,6 +12,9 @@ import { CompanyComponent } from './components/company/company.component';
 import { MatSortModule } from '@angular/material/sort';
 import { EffectsModule } from '@ngrx/effects';
 import { StockEffects } from './store/stock.effects';
+import { StoreModule } from '@ngrx/store';
+import { STOCK_STATE } from './store/stock.selectors';
+import { stockReducer } from './store/stock.reducers';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,7 @@ import { StockEffects } from './store/stock.effects';
     MatTableModule,
     MatSortModule,
     EffectsModule.forFeature([StockEffects]),
+    StoreModule.forFeature(STOCK_STATE, stockReducer),
   ],
 })
 export class StockModule {}
