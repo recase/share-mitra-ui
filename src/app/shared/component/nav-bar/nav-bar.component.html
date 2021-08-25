@@ -9,7 +9,7 @@
   </div>
 
   <img
-    (click)="toogleNav()"
+    (click)="toggleNav()"
     src="assets/images/menu-bars.svg"
     class="menu-icon"
     alt="menu-icon"
@@ -17,17 +17,54 @@
 
   <ul [ngClass]="{ 'show-nav': showNav }">
     <li>
-      <a (click)="navigateTo(['live'])" class="live">Live</a>
+      <a
+        (click)="navigateTo(['live'])"
+        class="live"
+        [ngClass]="{ active: activeLink === 'live' }"
+        >Live</a
+      >
     </li>
-    <li><a (click)="navigateTo([''])" class="active">Market</a></li>
-    <li><a (click)="navigateTo(['portfolio'])">portfolio</a></li>
-    <li><a (click)="navigateTo(['portfolio', 'alerts'])">Alerts</a></li>
-    <li><a (click)="navigateTo(['portfolio', 'watch-list'])">Watch list</a></li>
-    <li *ngIf="!isAuthenticated">
-      <a (click)="navigateTo(['auth', 'login'])">login</a>
+    <li>
+      <a
+        (click)="navigateTo([''])"
+        [ngClass]="{ active: activeLink === 'market' }"
+        >Market</a
+      >
+    </li>
+    <li>
+      <a
+        (click)="navigateTo(['portfolio'])"
+        [ngClass]="{ active: activeLink === 'portfolio' }"
+        >portfolio</a
+      >
+    </li>
+    <li>
+      <a
+        (click)="navigateTo(['portfolio', 'alerts'])"
+        [ngClass]="{ active: activeLink === 'alert' }"
+        >Alerts</a
+      >
+    </li>
+    <li>
+      <a
+        (click)="navigateTo(['portfolio', 'watch-list'])"
+        [ngClass]="{ active: activeLink === 'watchlist' }"
+        >Watch list</a
+      >
     </li>
     <li *ngIf="!isAuthenticated">
-      <a (click)="navigateTo(['auth', 'signup'])">signup</a>
+      <a
+        (click)="navigateTo(['auth', 'login'])"
+        [ngClass]="{ active: activeLink === 'login' }"
+        >login</a
+      >
+    </li>
+    <li *ngIf="!isAuthenticated">
+      <a
+        (click)="navigateTo(['auth', 'signup'])"
+        [ngClass]="{ active: activeLink === 'signup' }"
+        >signup</a
+      >
     </li>
     <li *ngIf="isAuthenticated && user">{{ user.email }}</li>
     <li *ngIf="isAuthenticated"><a (click)="logout()">logout</a></li>

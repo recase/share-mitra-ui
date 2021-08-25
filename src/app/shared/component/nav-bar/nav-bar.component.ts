@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { logoutAction, userInfoAction } from 'src/app/auth/state/auth.actions';
@@ -20,6 +20,8 @@ export class NavBarComponent implements OnInit, OnDestroy {
   public isAuthenticated!: boolean;
   private userSubscription!: Subscription;
   private authenticateSubscription!: Subscription;
+  private routerSubscription!: Subscription;
+  public activeLink!: string;
 
   constructor(private store: Store<AuthState>, private router: Router) {}
 
@@ -37,9 +39,31 @@ export class NavBarComponent implements OnInit, OnDestroy {
       .subscribe((user) => {
         this.user = user;
       });
+    this.routerSubscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        const routingUrl = event.url.split('/');
+        switch (routingUrl[1]) {
+          case 'live':
+            this.activeLink = 'live';
+            break;
+          case 'auth':
+            if (routingUrl[2] === 'login') this.activeLink = 'login';
+            else if (routingUrl[2] === 'signup') this.activeLink = 'signup';
+            break;
+          case 'portfolio':
+            if (routingUrl[2] === 'alerts') this.activeLink = 'alert';
+            else if (routingUrl[2] === 'watch-list')
+              this.activeLink = 'watchlist';
+            else this.activeLink = 'portfolio';
+            break;
+          default:
+            this.activeLink = 'market';
+        }
+      }
+    });
   }
 
-  public toogleNav(): void {
+  public toggleNav(): void {
     this.showNav = !this.showNav;
   }
 
@@ -52,6 +76,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
   }
 
   public navigateTo(link: string[]): void {
+    this.showNav = false;
     this.router.navigate(link);
   }
 
@@ -61,6 +86,9 @@ export class NavBarComponent implements OnInit, OnDestroy {
     }
     if (this.authenticateSubscription) {
       this.authenticateSubscription.unsubscribe();
+    }
+    if (this.routerSubscription) {
+      this.routerSubscription.unsubscribe();
     }
   }
 }
