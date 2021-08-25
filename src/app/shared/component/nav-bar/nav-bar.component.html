@@ -21,6 +21,8 @@
     </li>
     <li><a (click)="navigateTo([''])" class="active">Market</a></li>
     <li><a (click)="navigateTo(['portfolio'])">portfolio</a></li>
+    <li><a (click)="navigateTo(['portfolio', 'alerts'])">Alerts</a></li>
+    <li><a (click)="navigateTo(['portfolio', 'watch-list'])">Watch list</a></li>
     <li *ngIf="!isAuthenticated">
       <a (click)="navigateTo(['auth', 'login'])">login</a>
     </li>
