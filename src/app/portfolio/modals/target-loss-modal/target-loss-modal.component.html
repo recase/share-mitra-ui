@@ -1,0 +1,87 @@
+<div class="alert-container watchlist-container">
+  <div class="title">{{ title }}</div>
+  <div class="form-container">
+    <form [formGroup]="targetLossFormGroup">
+      <div class="form-fields">
+        <mat-form-field appearance="fill">
+          <mat-label>Stock</mat-label>
+          <mat-select formControlName="companyId">
+            <mat-option
+              *ngFor="let company of companyList"
+              [value]="company.id"
+            >
+              {{ company.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="form-fields">
+        <mat-form-field appearance="fill" floatLabel="always">
+          <mat-label>Notes</mat-label>
+          <textarea
+            matInput
+            type="textarea"
+            formControlName="notes"
+            class="example-right-align"
+            rows="4"
+            cols="50"
+          ></textarea>
+        </mat-form-field>
+      </div>
+      <div class="form-fields">
+        <mat-form-field appearance="fill" floatLabel="always">
+          <mat-label>Target price</mat-label>
+          <input
+            matInput
+            type="number"
+            formControlName="target"
+            class="example-right-align"
+            placeholder="0"
+          />
+          <mat-error *ngIf="targetLossForm?.target?.errors?.invalid"
+            >target price required</mat-error
+          >
+          <mat-error *ngIf="targetLossForm?.target?.errors?.minNumber"
+            >Only positive value</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="form-fields">
+        <mat-form-field appearance="fill" floatLabel="always">
+          <mat-label>Stop loss price</mat-label>
+          <input
+            matInput
+            type="number"
+            formControlName="stopLoss"
+            class="example-right-align"
+            placeholder="0"
+          />
+          <mat-error *ngIf="targetLossForm?.stopLoss?.errors?.invalid"
+            >target price required</mat-error
+          >
+          <mat-error *ngIf="targetLossForm?.stopLoss?.errors?.minNumber"
+            >Only positive value</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="form-fields">
+        <mat-form-field floatLabel="always" appearance="fill">
+          <mat-slide-toggle formControlName="enableNotification">
+            Enable notification
+          </mat-slide-toggle>
+          <textarea matInput hidden></textarea>
+        </mat-form-field>
+      </div>
+      <div class="action-container">
+        <button
+          mat-raised-button
+          *ngIf="targetLossFormGroup.valid"
+          [disabled]="loading"
+          (click)="saveAlert()"
+        >
+          <mat-icon>save</mat-icon>save
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

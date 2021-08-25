@@ -1,0 +1,19 @@
+@import "../../../../styles.scss";
+
+.alert-container {
+  mat-form-field {
+    width: 100%;
+  }
+}
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  overflow-y: scroll;
+  background: $scroll-bar-background;
+  box-shadow: inset 0 0 4px $scroll-bar-shadow;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $scroll-bar-fill;
+  border-radius: 2px;
+}
