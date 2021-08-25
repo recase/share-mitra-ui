@@ -18,7 +18,8 @@ body {
 
   .portfolio-modal,
   .transaction-modal,
-  .portfolio-add-modal {
+  .portfolio-add-modal,
+  .alert-modal {
     width: 40%;
     max-height: 90vh;
   }
@@ -32,14 +33,16 @@ body {
   @media screen and(max-width:1200px) {
     .portfolio-modal,
     .transaction-modal,
-    .portfolio-add-modal {
+    .portfolio-add-modal,
+    .alert-modal {
       width: 75vw;
     }
   }
   @media screen and(max-width:858px) {
     .portfolio-modal,
     .transaction-modal,
-    .portfolio-add-modal {
+    .portfolio-add-modal,
+    .alert-modal {
       max-width: 95vw !important;
       width: 95vw;
     }
