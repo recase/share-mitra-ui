@@ -36,6 +36,14 @@ import { Platform } from '@angular/cdk/platform';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatSelectModule } from '@angular/material/select';
 import { AddTransactionComponent } from './modals/add-transaction/add-transaction.component';
+import { AlertListComponent } from './component/alert-list/alert-list.component';
+import { WatchListComponent } from './component/watch-list/watch-list.component';
+import { TargetLossComponent } from './component/target-loss/target-loss.component';
+import { SimpleCardComponent } from './shared/component/simple-card/simple-card.component';
+import { WatchlistModalComponent } from './modals/watchlist-modal/watchlist-modal.component';
+import { AlertModalComponent } from './modals/alert-modal/alert-modal.component';
+import { TargetLossModalComponent } from './modals/target-loss-modal/target-loss-modal.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -48,6 +56,13 @@ import { AddTransactionComponent } from './modals/add-transaction/add-transactio
     AddPrtfolioComponent,
     DeleteComponent,
     AddTransactionComponent,
+    AlertListComponent,
+    WatchListComponent,
+    TargetLossComponent,
+    SimpleCardComponent,
+    WatchlistModalComponent,
+    AlertModalComponent,
+    TargetLossModalComponent,
   ],
   imports: [
     CommonModule,
@@ -66,6 +81,7 @@ import { AddTransactionComponent } from './modals/add-transaction/add-transactio
     MatInputModule,
     MatStepperModule,
     MatSelectModule,
+    MatSlideToggleModule,
   ],
 
   providers: [

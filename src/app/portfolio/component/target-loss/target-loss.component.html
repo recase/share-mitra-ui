@@ -1,0 +1,29 @@
+<div class="card-list-container alert-container">
+  <div class="list-container">
+    <div class="card" *ngFor="let targetLoss of targetStopLossList">
+      <app-simple-card
+        [symbol]="targetLoss.symbol"
+        [name]="targetLoss.companyName"
+        [notes]="targetLoss.notes"
+        [target]="targetLoss.target"
+        [loss]="targetLoss.stopLoss"
+        [enableNotification]="targetLoss.enableNotification"
+        [targetLoss]="true"
+        (editEvent)="editTargetLoss(targetLoss.id)"
+        (deleteEvent)="deleteTargetLoss(targetLoss.id)"
+        (notificationEvent)="toggleNofification($event, targetLoss.id)"
+      ></app-simple-card>
+    </div>
+  </div>
+
+  <div class="add-container">
+    <button
+      mat-fab
+      aria-label="Add button"
+      class="add-button"
+      (click)="addTargetLoss()"
+    >
+      <mat-icon>add_circle_outline</mat-icon>
+    </button>
+  </div>
+</div>

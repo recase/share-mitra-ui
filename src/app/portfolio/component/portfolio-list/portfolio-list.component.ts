@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { Portfolio, PortfolioState, PortfolioSummary } from 'src/app/interface';
@@ -28,7 +29,8 @@ export class PortfolioListComponent implements OnInit, OnDestroy {
 
   constructor(
     private dialog: MatDialog,
-    private store: Store<PortfolioState>
+    private store: Store<PortfolioState>,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -70,6 +72,10 @@ export class PortfolioListComponent implements OnInit, OnDestroy {
     this.dialog.open(AddPrtfolioComponent, {
       panelClass: 'portfolio-add-modal',
     });
+  }
+
+  public redirectToTargetLoss(): void {
+    this.router.navigate(['portfolio', 'target-stop-loss']);
   }
 
   ngOnDestroy(): void {

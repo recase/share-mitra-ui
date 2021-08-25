@@ -1,0 +1,43 @@
+<div class="alert-container watchlist-container">
+  <div class="title">{{ title }}</div>
+  <div class="form-container">
+    <form [formGroup]="watchListFormGroup">
+      <div class="form-fields">
+        <mat-form-field appearance="fill">
+          <mat-label>Stock</mat-label>
+          <mat-select formControlName="companyId">
+            <mat-option
+              *ngFor="let company of companyList"
+              [value]="company.id"
+            >
+              {{ company.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="form-fields">
+        <mat-form-field appearance="fill" floatLabel="always">
+          <mat-label>Notes</mat-label>
+          <textarea
+            matInput
+            type="textarea"
+            formControlName="notes"
+            class="example-right-align"
+            rows="4"
+            cols="50"
+          ></textarea>
+        </mat-form-field>
+      </div>
+      <div class="action-container">
+        <button
+          mat-raised-button
+          *ngIf="watchListFormGroup.valid"
+          [disabled]="loading"
+          (click)="saveWatchList()"
+        >
+          <mat-icon>save</mat-icon>save
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

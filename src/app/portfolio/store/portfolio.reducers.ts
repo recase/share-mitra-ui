@@ -2,11 +2,16 @@ import { Action, createReducer, on } from '@ngrx/store';
 import { PortfolioState } from 'src/app/interface';
 import {
   resetPortfolioData,
+  updateAlertList,
+  updateApiErrorMsg,
+  updateApiLoading,
   updateCompanayList,
   updateCreatePortfolioApiLoading,
   updatePortfolioApiLoading,
   updatePortfolioData,
+  updateTargetLossList,
   updateTransactionApiLoading,
+  updateWatchlistData,
 } from './portfolio.actions';
 import { portfolioState } from './portfolio.state';
 
@@ -46,6 +51,36 @@ const _portfolioReducet = createReducer(
     return {
       ...state,
       transactionApiLoading: action.flag,
+    };
+  }),
+  on(updateAlertList, (state, action) => {
+    return {
+      ...state,
+      alertList: action.alerts,
+    };
+  }),
+  on(updateWatchlistData, (state, action) => {
+    return {
+      ...state,
+      watchlists: action.watchlist,
+    };
+  }),
+  on(updateTargetLossList, (state, action) => {
+    return {
+      ...state,
+      targetLossList: action.targetLoss,
+    };
+  }),
+  on(updateApiLoading, (state, actions) => {
+    return {
+      ...state,
+      apiLoading: actions.flag,
+    };
+  }),
+  on(updateApiErrorMsg, (state, action) => {
+    return {
+      ...state,
+      apiErrorMsg: action.msg,
     };
   })
 );

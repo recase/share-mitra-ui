@@ -1,0 +1,58 @@
+<div class="simple-card-container">
+  <div class="top-section">
+    <div class="header">
+      <div class="symbol">{{ symbol }}</div>
+      <div class="name">{{ name }}</div>
+    </div>
+    <div class="price-container" *ngIf="hasPriceValue && !targetLoss">
+      <div class="price-section" *ngIf="exactPrice">
+        <div class="label">Price at</div>
+        <div class="value">{{ exactPrice | costTransform }}</div>
+      </div>
+      <div class="price-section" *ngIf="!exactPrice">
+        <div class="label">Price range</div>
+        <div class="value">
+          {{ minPrice | costTransform }} - {{ maxPrice | costTransform }}
+        </div>
+      </div>
+    </div>
+    <div class="price-container" *ngIf="targetLoss">
+      <div class="price-section">
+        <div class="label">Target</div>
+        <div class="value">{{ target | costTransform }}</div>
+      </div>
+      <div class="price-section">
+        <div class="label">Stop loss</div>
+        <div class="value">{{ loss | costTransform }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="notes-container">
+    <div class="label">Notes:</div>
+    {{ notes }}
+  </div>
+  <div class="action-container">
+    <div class="card-action">
+      <mat-icon class="action-icon" *ngIf="editable" (click)="editClick()">
+        edit
+      </mat-icon>
+      <mat-icon class="action-icon" (click)="deleteClick()">
+        delete_forever
+      </mat-icon>
+    </div>
+    <mat-icon
+      class="action-icon"
+      *ngIf="!watchlist && enableNotification"
+      (click)="toggleNotification(false)"
+    >
+      notifications_active
+    </mat-icon>
+    <mat-icon
+      class="action-icon"
+      *ngIf="!watchlist && !enableNotification"
+      (click)="toggleNotification(true)"
+    >
+      notifications_off
+    </mat-icon>
+  </div>
+</div>

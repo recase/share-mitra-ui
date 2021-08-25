@@ -3,6 +3,19 @@
   padding: 12px;
   // .summary-container{}
 
+  .link-container {
+    margin-bottom: 16px;
+
+    .link {
+      cursor: pointer;
+      // color: $azure-radiance;
+    }
+    .link:hover {
+      color: $azure-radiance;
+      text-decoration: underline;
+    }
+  }
+
   .list-container {
     margin-top: 12px;
     display: flex;

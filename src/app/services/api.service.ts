@@ -14,6 +14,9 @@ import {
   CompanyListingData,
   Portfolio,
   Transaction,
+  Alert,
+  Watchlist,
+  TargetLoss,
 } from '../interface';
 
 @Injectable({
@@ -34,6 +37,9 @@ export class ApiService {
   private portfolioUrl = this.baseUrl + 'portfolio/';
   private portfolioTransactionUrl = this.baseUrl + 'portfolio-transaction/';
   private companyListingUrl = this.baseUrl + 'company/listing-data/';
+  private alertUrl = this.baseUrl + 'alert/';
+  private watchlistUrl = this.baseUrl + 'watchlist/';
+  private targetLossUrl = this.baseUrl + 'target-loss/';
 
   constructor(private http: HttpClient) {}
 
@@ -111,6 +117,71 @@ export class ApiService {
     return this.http.delete<any>(
       this.portfolioTransactionUrl + `${transactionId}/`
     );
+  }
+
+  public retrieveAlerts(): Observable<Alert[]> {
+    return this.http.get<Alert[]>(this.alertUrl);
+  }
+
+  public createAlert(alert: Alert): Observable<any> {
+    return this.http.post<any>(this.alertUrl, alert);
+  }
+
+  public updateAlert(alert: Alert): Observable<any> {
+    return this.http.put<any>(this.alertUrl + `${alert.id}/`, alert);
+  }
+
+  public deleteAlert(alertId: number): Observable<any> {
+    return this.http.delete<any>(this.alertUrl + `${alertId}/`);
+  }
+
+  public retrieveWatchlist(): Observable<Watchlist[]> {
+    return this.http.get<Watchlist[]>(this.watchlistUrl);
+  }
+
+  public createWatchlist(watchlist: Watchlist): Observable<any> {
+    return this.http.post<any>(this.watchlistUrl, watchlist);
+  }
+
+  public updateWatchlist(watchlist: Watchlist): Observable<any> {
+    return this.http.put<any>(
+      this.watchlistUrl + `${watchlist.id}/`,
+      watchlist
+    );
+  }
+
+  public deleteWatchlist(watchlistId: number): Observable<any> {
+    return this.http.delete<any>(this.watchlistUrl + `${watchlistId}/`);
+  }
+
+  public retrieveTargetLoss(): Observable<TargetLoss[]> {
+    return this.http.get<TargetLoss[]>(this.targetLossUrl);
+  }
+
+  public createTargetLoss(targetLoss: TargetLoss): Observable<any> {
+    return this.http.post<any>(this.targetLossUrl, targetLoss);
+  }
+
+  public updateTargetLoss(targetLoss: TargetLoss): Observable<any> {
+    return this.http.put<any>(
+      this.targetLossUrl + `${targetLoss.id}/`,
+      targetLoss
+    );
+  }
+
+  public deleteTargetLoss(targerLossId: number): Observable<any> {
+    return this.http.delete<any>(this.targetLossUrl + `${targerLossId}/`);
+  }
+
+  public partialUpdateAlert(alertId: number, data: any): Observable<any> {
+    return this.http.patch<any>(this.alertUrl + `${alertId}/`, data);
+  }
+
+  public partialUpdateTargetLoss(
+    targetLossId: number,
+    data: any
+  ): Observable<any> {
+    return this.http.patch<any>(this.targetLossUrl + `${targetLossId}/`, data);
   }
 
   public getToken(): string | null {

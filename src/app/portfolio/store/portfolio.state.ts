@@ -6,4 +6,9 @@ export const portfolioState: PortfolioState = {
   companyList: null,
   createPortfolioApiLoading: false,
   transactionApiLoading: false,
+  alertList: null,
+  watchlists: null,
+  targetLossList: null,
+  apiLoading: false,
+  apiErrorMsg: '',
 };

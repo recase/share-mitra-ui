@@ -1,0 +1,118 @@
+<div class="alert-container watchlist-container">
+  <div class="title">{{ title }}</div>
+  <div class="form-container">
+    <form [formGroup]="alertFormGroup">
+      <div class="form-fields">
+        <mat-form-field appearance="fill">
+          <mat-label>Stock</mat-label>
+          <mat-select formControlName="companyId">
+            <mat-option
+              *ngFor="let company of companyList"
+              [value]="company.id"
+            >
+              {{ company.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="form-fields">
+        <mat-form-field appearance="fill" floatLabel="always">
+          <mat-label>Notes</mat-label>
+          <textarea
+            matInput
+            type="textarea"
+            formControlName="notes"
+            class="example-right-align"
+            rows="4"
+            cols="50"
+          ></textarea>
+        </mat-form-field>
+      </div>
+      <div class="form-fields">
+        <mat-form-field floatLabel="always" appearance="fill">
+          <mat-slide-toggle formControlName="priceRange" [color]="color">
+            Price range
+          </mat-slide-toggle>
+          <textarea matInput hidden></textarea>
+        </mat-form-field>
+      </div>
+      <div class="form-fields" *ngIf="alertForm.exactPrice.enabled">
+        <mat-form-field appearance="fill" floatLabel="always">
+          <mat-label>Price at</mat-label>
+          <input
+            matInput
+            type="number"
+            formControlName="exactPrice"
+            class="example-right-align"
+            placeholder="0"
+          />
+          <mat-error *ngIf="alertForm?.exactPrice?.errors?.invalid"
+            >exact price required</mat-error
+          >
+          <mat-error *ngIf="alertForm?.exactPrice?.errors?.minNumber"
+            >Only positive value</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="group-container">
+        <div class="form-fields" *ngIf="alertForm.minPrice.enabled">
+          <mat-form-field appearance="fill" floatLabel="always">
+            <mat-label>Min price</mat-label>
+            <input
+              matInput
+              type="number"
+              formControlName="minPrice"
+              class="example-right-align"
+              placeholder="0"
+            />
+            <mat-error *ngIf="alertForm?.minPrice?.errors?.invalid"
+              >min price required</mat-error
+            >
+            <mat-error *ngIf="alertForm?.minPrice?.errors?.minNumber"
+              >Only positive value</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <div class="form-fields" *ngIf="alertForm.maxPrice.enabled">
+          <mat-form-field appearance="fill" floatLabel="always">
+            <mat-label>Max price</mat-label>
+            <input
+              matInput
+              type="number"
+              formControlName="maxPrice"
+              class="example-right-align"
+              placeholder="0"
+            />
+            <mat-error *ngIf="alertForm?.maxPrice?.errors?.invalid"
+              >Maximum price required</mat-error
+            >
+            <mat-error *ngIf="alertForm?.maxPrice?.errors?.minNumber"
+              >Only positive value</mat-error
+            >
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form-fields">
+        <mat-form-field floatLabel="always" appearance="fill">
+          <mat-slide-toggle
+            formControlName="enableNotification"
+            [color]="color"
+          >
+            Enable notification
+          </mat-slide-toggle>
+          <textarea matInput hidden></textarea>
+        </mat-form-field>
+      </div>
+      <div class="action-container">
+        <button
+          mat-raised-button
+          *ngIf="alertFormGroup.valid"
+          [disabled]="loading"
+          (click)="saveAlert()"
+        >
+          <mat-icon>save</mat-icon>save
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
