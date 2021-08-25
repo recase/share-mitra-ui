@@ -178,10 +178,46 @@ export interface PortfolioState {
   companyList: CompanyListingData[] | null;
   createPortfolioApiLoading: boolean;
   transactionApiLoading: boolean;
+  alertList: Alert[] | null;
+  watchlists: Watchlist[] | null;
+  targetLossList: TargetLoss[] | null;
+  apiLoading: boolean;
+  apiErrorMsg: string;
 }
 
 export interface TransactionModalInterface {
   option: string;
   portfolioId: number;
   transaction?: Transaction;
+}
+
+export interface Alert {
+  id?: number;
+  companyId?: number;
+  companyName?: string;
+  symbol?: string;
+  notes: string;
+  exactPrice?: number;
+  minPrice?: number;
+  maxPrice?: number;
+  enableNotification?: boolean;
+}
+
+export interface Watchlist {
+  id?: number;
+  companyId?: number;
+  companyName?: string;
+  symbol?: string;
+  notes: string;
+}
+
+export interface TargetLoss {
+  id?: number;
+  companyId?: number;
+  companyName?: string;
+  symbol?: string;
+  notes: string;
+  stopLoss: number;
+  target: number;
+  enableNotification?: boolean;
 }
