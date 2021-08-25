@@ -40,3 +40,26 @@ export const transactionApiLoadingSelector = createSelector(
     return state.transactionApiLoading;
   }
 );
+
+export const alertSelector = createSelector(portfolioSelector, (state) => {
+  return state.alertList;
+});
+
+export const watchlistSelector = createSelector(portfolioSelector, (state) => {
+  return state.watchlists;
+});
+
+export const targetLossSelector = createSelector(portfolioSelector, (state) => {
+  return state.targetLossList;
+});
+
+export const apiErrorMegSelector = createSelector(
+  portfolioSelector,
+  (state) => {
+    return state.apiErrorMsg;
+  }
+);
+
+export const apiLoadingSelector = createSelector(portfolioSelector, (state) => {
+  return state.apiLoading;
+});
