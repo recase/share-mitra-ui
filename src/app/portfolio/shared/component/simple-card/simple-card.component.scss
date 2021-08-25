@@ -1,0 +1,60 @@
+@import "../../../../../styles.scss";
+
+.simple-card-container {
+  padding: 8px 16px;
+  border-radius: 4px;
+  box-shadow: 2px 4px 7px 4px rgb(0 0 0 / 50%);
+  margin-bottom: 16px;
+
+  .top-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid gray;
+  }
+
+  .header {
+    .symbol {
+      font-size: $font-size-l;
+      font-weight: $bold;
+    }
+    .name {
+      font-style: italic;
+    }
+  }
+
+  .price-container {
+    text-align: right;
+    margin-left: 16px;
+    .label {
+      font-style: italic;
+    }
+    .value {
+      font-weight: $bold;
+    }
+  }
+
+  .notes-container {
+    padding-left: 4px;
+    .label {
+      font-size: $font-size-s;
+      font-style: italic;
+    }
+  }
+
+  .action-container {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    .action-icon {
+      cursor: pointer;
+    }
+
+    .card-action {
+      .action-icon {
+        margin-left: 8px;
+      }
+    }
+  }
+}
