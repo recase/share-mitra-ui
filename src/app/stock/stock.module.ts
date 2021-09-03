@@ -15,6 +15,7 @@ import { StockEffects } from './store/stock.effects';
 import { StoreModule } from '@ngrx/store';
 import { STOCK_STATE } from './store/stock.selectors';
 import { stockReducer } from './store/stock.reducers';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { stockReducer } from './store/stock.reducers';
   imports: [
     CommonModule,
     StockRoutingModule,
+    SharedModule,
     MatTabsModule,
     MatTableModule,
     MatSortModule,
