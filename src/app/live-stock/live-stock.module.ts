@@ -10,12 +10,14 @@ import { LivePriceEffect } from './state/live.effects';
 import { StoreModule } from '@ngrx/store';
 import { LIVE_PRICE_STATE } from './state/live.selectors';
 import { liveReducer } from './state/live.reducers';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [LiveStockComponent, LiveComponent],
   imports: [
     CommonModule,
     LiveStockRoutingModule,
+    SharedModule,
     MatTableModule,
     EffectsModule.forFeature([LivePriceEffect]),
     StoreModule.forFeature(LIVE_PRICE_STATE, liveReducer),

@@ -63,10 +63,14 @@ export class LiveComponent implements OnInit, OnDestroy {
     'tv',
   ];
   private liveDataSubscription!: Subscription;
+  private timeInterval: any;
   constructor(private store: Store<LiveState>) {}
 
   ngOnInit(): void {
-    this.store.dispatch(retrieveLivePrice());
+    this.retrieveLiveData();
+    this.timeInterval = setInterval(() => {
+      this.retrieveLiveData();
+    }, 60000);
     this.liveDataSubscription = this.store
       .select(retrieveLivePriceState)
       .subscribe((data: LiveStockList) => {
@@ -74,9 +78,16 @@ export class LiveComponent implements OnInit, OnDestroy {
       });
   }
 
+  private retrieveLiveData() {
+    this.store.dispatch(retrieveLivePrice());
+  }
+
   ngOnDestroy(): void {
     if (this.liveDataSubscription) {
       this.liveDataSubscription.unsubscribe();
+    }
+    if (this.timeInterval) {
+      clearInterval(this.timeInterval);
     }
   }
 }
